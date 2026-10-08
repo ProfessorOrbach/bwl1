@@ -1,0 +1,23 @@
+# Grundlagen der BWL 1
+
+Die Vorlesungsunterlagen zu **Grundlagen der Betriebswirtschaftslehre 1** am Institut für
+Versicherungswesen der TH Köln, Wintersemester 2026/27.
+
+Jede Vorlesung ist eine einzelne HTML-Seite: lesbar als Fließtext, im Präsentationsmodus
+als Folien zu zeigen und über die Druckfunktion als PDF zu speichern.
+
+| Vorlesung | Termin | Thema | Adresse |
+|---|---|---|---|
+| 01 | 08.10.2026 | Einleitung | [vorlesung-1](https://professororbach.github.io/bwl1/vorlesung-1/) |
+
+Übersicht: <https://professororbach.github.io/bwl1/>
+
+## Hinweis zu den Videobotschaften
+
+Die Folie „Stimmen von Ehemaligen“ zeigt in der Vorlesung zwei Videobotschaften.
+Die Aufnahmen sind bewusst **nicht** Teil dieses öffentlichen Repositories; auf der Seite
+steht dort ein Platzhalter.
+
+---
+
+Prof. Dr. Dominik Orbach · [professororbach.github.io](https://professororbach.github.io/)

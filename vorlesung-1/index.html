@@ -1,0 +1,2316 @@
+<meta charset="utf-8">
+<title>Grundlagen der BWL Vorlesung 1</title>
+<meta name="description" content="Vorlesung 1 ‘Einleitung’ aus Grundlagen der Betriebswirtschaftslehre 1 bei Prof. Dr. Dominik Orbach, Institut für Versicherungswesen der TH Köln, Wintersemester 2026/27.">
+<meta name="author" content="Prof. Dr. Dominik Orbach">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+/* =========================================================
+   Farbwelt: TH Köln — Rot #c81e0f · Orange #ea5a00 · Violett #b43092
+   Neutrale: kühles Grau, kein Beige
+   ========================================================= */
+:root{
+  --rot:#c81e0f;
+  --orange:#ea5a00;
+  --violett:#b43092;
+  --rot-soft:#fdeceb;
+  --orange-soft:#fff0e4;
+  --violett-soft:#f9ecf5;
+  --gruen:#177a52;
+
+  --ink:#15151a;
+  --ink-2:#4e4e5a;
+  --ink-3:#7d7d8c;
+  --paper:#fafafc;
+  --paper-2:#f1f1f5;
+  --card:#ffffff;
+  --line:#e3e3ea;
+  --line-2:#d2d2dc;
+
+  --display:'Bricolage Grotesque','Helvetica Neue',Helvetica,Arial,sans-serif;
+  --body:'Figtree','Helvetica Neue',Helvetica,Arial,sans-serif;
+  --mono:'IBM Plex Mono','SFMono-Regular',Consolas,monospace;
+
+  --gutter:clamp(20px,5vw,72px);
+  --r:12px;
+  --shadow:0 1px 2px rgba(20,20,30,.04),0 10px 30px -18px rgba(20,20,30,.28);
+  --verlauf:linear-gradient(100deg,var(--rot) 0%,var(--orange) 48%,var(--violett) 100%);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --rot:#ff6f5e; --orange:#ff9245; --violett:#e089cf;
+    --rot-soft:#2a1614; --orange-soft:#2a1a10; --violett-soft:#251628; --gruen:#5fc79d;
+    --ink:#f3f3f7; --ink-2:#b8b8c6; --ink-3:#8a8a99;
+    --paper:#101014; --paper-2:#17171d; --card:#1c1c23; --line:#2d2d37; --line-2:#3b3b47;
+    --shadow:0 1px 2px rgba(0,0,0,.5),0 12px 34px -20px rgba(0,0,0,.9);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --rot:#ff6f5e; --orange:#ff9245; --violett:#e089cf;
+  --rot-soft:#2a1614; --orange-soft:#2a1a10; --violett-soft:#251628; --gruen:#5fc79d;
+  --ink:#f3f3f7; --ink-2:#b8b8c6; --ink-3:#8a8a99;
+  --paper:#101014; --paper-2:#17171d; --card:#1c1c23; --line:#2d2d37; --line-2:#3b3b47;
+  --shadow:0 1px 2px rgba(0,0,0,.5),0 12px 34px -20px rgba(0,0,0,.9);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:calc(16px * var(--zoom,1))}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--body);font-size:calc(clamp(18.5px,1.18vw,21.5px) * var(--zoom,1));line-height:1.62;
+  letter-spacing:-.003em;-webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{margin:0;font-family:var(--display);font-weight:700;text-wrap:balance;line-height:1.12;letter-spacing:-.02em}
+p{margin:0}
+ul,ol{margin:0}
+a{color:inherit}
+img{max-width:100%;display:block}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:6px}
+
+/* Mono-Labels: mehr Luft zwischen Wörtern — behebt das Gedrängte */
+.mono,.eyebrow,.chip,.tag,.badge,.btn,.toolbtn,.planrow .n,.planrow .d,
+.stat .l,.calc label,.npsrow label,.hint,.agenda .t,.step .n,.litem .k,.srccard .row button,.qitem .opts button{
+  font-family:var(--mono);font-variant-numeric:tabular-nums;word-spacing:.16em;
+}
+.eyebrow{font-size:.82rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--rot)}
+.lead{font-size:clamp(1.12rem,1.32vw,1.36rem);color:var(--ink-2);max-width:66ch;line-height:1.6}
+
+/* ---------- Kopfleiste ---------- */
+#progress{position:fixed;left:0;top:0;height:3px;width:0;background:var(--verlauf);z-index:80;transition:width .12s linear}
+nav.top{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:70;
+  background:color-mix(in srgb,var(--paper) 88%,transparent);
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--line);
+  padding-inline:var(--gutter);
+}
+nav.top .row{display:flex;align-items:center;gap:1rem;min-height:62px;max-width:1560px;margin-inline:auto}
+nav.top .mark{font-family:var(--display);font-weight:800;font-size:1.05rem;white-space:nowrap;text-decoration:none;display:flex;align-items:center;gap:.6rem}
+nav.top .mark .dot{width:13px;height:13px;border-radius:50%;background:var(--verlauf);flex:none}
+nav.top ul{list-style:none;display:flex;gap:.25rem;margin:0 auto 0 .8rem;padding:0;overflow-x:auto;scrollbar-width:none}
+nav.top ul::-webkit-scrollbar{display:none}
+nav.top li a{
+  display:flex;align-items:center;gap:.5rem;padding:.5rem .8rem;border-radius:999px;
+  font-family:var(--mono);font-size:.83rem;letter-spacing:.05em;word-spacing:.16em;text-transform:uppercase;
+  text-decoration:none;color:var(--ink-3);white-space:nowrap;transition:background .15s,color .15s;
+}
+nav.top li a b{font-weight:600;color:var(--ink-3)}
+nav.top li a:hover{background:var(--paper-2);color:var(--ink)}
+nav.top li a.active{color:#fff;background:var(--ink)}
+nav.top li a.active b{color:#fff;opacity:.6}
+.tools{display:flex;gap:.45rem;flex:none}
+.toolbtn{
+  font-size:.81rem;letter-spacing:.07em;text-transform:uppercase;
+  border:1px solid var(--line-2);background:var(--card);color:var(--ink-2);
+  padding:.52rem .9rem;border-radius:999px;cursor:pointer;white-space:nowrap;transition:.15s;
+}
+.toolbtn:hover{border-color:var(--ink);color:var(--ink)}
+.toolbtn[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.toolbtn.accent{background:var(--rot);border-color:var(--rot);color:#fff}
+.toolbtn.accent:hover{background:var(--ink);border-color:var(--ink);color:#fff}
+@media (max-width:1100px){nav.top ul{display:none}}
+
+/* ---------- Timer ---------- */
+#timerbar{
+  position:sticky;top:calc(62px + env(safe-area-inset-top,0px));z-index:65;
+  background:var(--ink);color:#fff;padding:.7rem var(--gutter);
+  display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;
+  font-family:var(--mono);font-size:.84rem;word-spacing:.16em;
+}
+#timerbar[hidden]{display:none}
+#timerbar .clock{font-size:1.6rem;font-weight:600}
+#timerbar .now{color:#ffb9ad;letter-spacing:.08em;text-transform:uppercase;font-size:.76rem}
+#timerbar .track{flex:1;min-width:200px;height:9px;background:rgba(255,255,255,.14);border-radius:99px;overflow:hidden;display:flex}
+#timerbar .track span{display:block;height:100%;border-right:1px solid rgba(0,0,0,.4)}
+#timerbar .fill{position:relative;height:9px;margin-top:-9px;background:var(--verlauf);border-radius:99px;width:0}
+#timerbar button{background:transparent;border:1px solid rgba(255,255,255,.35);color:#fff;font-family:var(--mono);font-size:.76rem;text-transform:uppercase;letter-spacing:.07em;padding:.4rem .85rem;border-radius:999px;cursor:pointer}
+#timerbar button:hover{background:rgba(255,255,255,.16)}
+
+/* ---------- Grundraster ---------- */
+section{padding-inline:var(--gutter);padding-block:clamp(3.5rem,6.5vw,6rem);scroll-margin-top:80px}
+section.alt{background:var(--paper-2)}
+.wrap{max-width:1300px;margin-inline:auto}
+.narrow{max-width:940px;margin-inline:auto}
+.slide + .slide{margin-top:clamp(2.8rem,5.5vw,5rem)}
+
+.chaphead{display:grid;grid-template-columns:auto 1fr;gap:clamp(1.2rem,3vw,2.8rem);align-items:start}
+.chaphead .num{
+  font-family:var(--display);font-weight:800;font-size:clamp(3.6rem,8vw,7rem);line-height:.82;
+  letter-spacing:-.05em;
+  background:var(--verlauf);-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.chaphead h2{font-size:clamp(2.1rem,4.6vw,3.6rem);margin-bottom:.9rem}
+.chaphead .meta{display:flex;flex-wrap:wrap;gap:.55rem;margin-bottom:1.1rem}
+.chip{
+  font-size:.78rem;letter-spacing:.09em;text-transform:uppercase;
+  padding:.38rem .8rem;border-radius:999px;background:var(--rot-soft);color:var(--rot);white-space:nowrap;
+}
+.chip.n{background:transparent;color:var(--ink-3);border:1px solid var(--line-2)}
+.chip.o{background:var(--orange-soft);color:var(--orange)}
+.chip.v{background:var(--violett-soft);color:var(--violett)}
+@media (max-width:640px){.chaphead{grid-template-columns:1fr;gap:.4rem}.chaphead .num{font-size:3rem}}
+
+h3.blockhead{font-size:clamp(1.6rem,3.2vw,2.3rem);margin-bottom:.8rem}
+.blocklead{margin-bottom:clamp(1.4rem,2.6vw,2rem)}
+
+/* ---------- Hero ---------- */
+header.hero{padding:0;border-bottom:1px solid var(--line);background:var(--paper)}
+.hero-inner{
+  max-width:1560px;margin-inline:auto;padding:clamp(2.8rem,6vw,5.5rem) var(--gutter) clamp(2.4rem,4.5vw,4rem);
+  display:grid;grid-template-columns:1.3fr .8fr;gap:clamp(2rem,4vw,4.5rem);align-items:end;
+}
+@media (max-width:980px){.hero-inner{grid-template-columns:1fr}}
+.hero h1{font-size:clamp(2.6rem,6.4vw,5.4rem);letter-spacing:-.035em;font-weight:800;line-height:1.02}
+.hero h1 em{font-style:normal;background:var(--verlauf);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .kicker{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1.6rem}
+.hero .sub{margin-top:1.5rem;font-size:clamp(1.12rem,1.5vw,1.42rem);color:var(--ink-2);max-width:56ch;line-height:1.55}
+.hero .who{margin-top:1.9rem;display:flex;align-items:center;gap:1rem;font-family:var(--mono);font-size:.84rem;color:var(--ink-3);line-height:1.7;word-spacing:.12em}
+.hero .who img{width:58px;height:58px;border-radius:50%;object-fit:cover;object-position:50% 12%;background:var(--paper-2);flex:none}
+.hero-cta{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:2rem}
+.btn{
+  display:inline-flex;align-items:center;gap:.55rem;padding:.8rem 1.35rem;border-radius:999px;
+  font-size:.82rem;letter-spacing:.07em;text-transform:uppercase;
+  text-decoration:none;border:1.5px solid var(--line-2);color:var(--ink);background:var(--card);cursor:pointer;
+  transition:background .15s,color .15s,border-color .15s;
+}
+.btn:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.btn.primary{background:var(--rot);border-color:var(--rot);color:#fff}
+.btn.primary:hover{background:var(--ink);border-color:var(--ink)}
+.hero-art img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r)}
+.hero-art figcaption{font-family:var(--mono);font-size:.76rem;color:var(--ink-3);margin-top:.7rem;line-height:1.6;word-spacing:.12em}
+
+/* ---------- Startbildschirm ---------- */
+.welcome{
+  background:var(--paper);color:var(--ink);
+  padding:clamp(2rem,4.5vw,4rem) var(--gutter) clamp(2.2rem,4.5vw,3.6rem);
+  display:grid;align-content:center;min-height:min(84vh,880px);
+}
+.welcome-inner{max-width:1400px;margin-inline:auto;width:100%;display:grid;gap:clamp(1.5rem,3.2vw,2.6rem)}
+.tear{margin:0;border-radius:14px;overflow:hidden;box-shadow:0 24px 60px -34px rgba(25,20,22,.5);
+  animation:tearIn .95s cubic-bezier(.2,.75,.25,1) both}
+.tear img{width:100%;display:block;aspect-ratio:16/7;object-fit:cover;max-height:min(44vh,400px)}
+@keyframes tearIn{from{transform:scale(1.045)}to{transform:none}}
+.wtext{display:grid;gap:clamp(.85rem,1.7vw,1.35rem);animation:riseIn .8s .15s cubic-bezier(.2,.75,.25,1) both}
+@keyframes riseIn{from{transform:translateY(12px);opacity:.4}to{transform:none;opacity:1}}
+.weyebrow{font-family:var(--mono);font-size:.86rem;letter-spacing:.16em;word-spacing:.16em;text-transform:uppercase;color:var(--rot)}
+.welcome h1{font-size:clamp(2.5rem,5.8vw,4.9rem);font-weight:800;letter-spacing:-.035em;line-height:1.02;color:var(--ink)}
+.welcome h1 em{font-style:normal;background:var(--verlauf);-webkit-background-clip:text;background-clip:text;color:transparent}
+.wsub{font-size:clamp(1.12rem,1.5vw,1.42rem);color:var(--ink-2);max-width:62ch;line-height:1.55}
+.wfacts{display:grid;grid-template-columns:repeat(3,auto);gap:clamp(1.4rem,4vw,3.6rem);justify-content:start;align-items:start;margin-top:.3rem}
+.wfacts .v{font-family:var(--display);font-weight:800;font-size:clamp(2.3rem,4.6vw,3.7rem);line-height:.95;letter-spacing:-.04em;display:block;font-variant-numeric:tabular-nums;
+  background:var(--verlauf);-webkit-background-clip:text;background-clip:text;color:transparent}
+.wfacts .l{font-family:var(--mono);font-size:.8rem;letter-spacing:.09em;word-spacing:.14em;text-transform:uppercase;color:var(--ink-3);line-height:1.5;display:block;margin-top:.35rem;max-width:23ch}
+@media (max-width:680px){.wfacts{grid-template-columns:1fr 1fr;gap:1.2rem}}
+.wcta{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:.4rem}
+.wmeta{font-family:var(--mono);font-size:.84rem;color:var(--ink-3);letter-spacing:.05em;word-spacing:.14em;line-height:1.7}
+@media (prefers-reduced-motion:reduce){.tear,.wtext{animation:none}}
+
+/* ---------- Videobotschaften ---------- */
+.vidgrid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.2rem,2.4vw,2.2rem)}
+@media (max-width:820px){.vidgrid{grid-template-columns:1fr}}
+.vid{margin:0;display:grid;gap:.9rem}
+.vid .frame{position:relative;aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;background:var(--paper-2);border:1px solid var(--line)}
+.vid .frame video{width:100%;height:100%;object-fit:cover;display:block;background:#000}
+.vid .ph{
+  position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:.9rem;text-align:center;
+  background:linear-gradient(140deg,var(--rot) 0%,var(--orange) 55%,var(--violett) 100%);color:#fff;padding:1.5rem;
+}
+.vid .ph .disc{width:74px;height:74px;border-radius:50%;background:rgba(255,255,255,.22);border:2px solid rgba(255,255,255,.75);display:grid;place-items:center}
+.vid .ph .disc span{width:0;height:0;border-left:19px solid #fff;border-top:12px solid transparent;border-bottom:12px solid transparent;margin-left:5px}
+.vid .ph b{font-family:var(--mono);font-size:.82rem;letter-spacing:.14em;word-spacing:.16em;text-transform:uppercase;font-weight:600}
+.vid .ph small{font-size:.92rem;color:rgba(255,255,255,.9);max-width:34ch;line-height:1.55}
+.vid figcaption b{display:block;font-family:var(--display);font-weight:700;font-size:1.2rem;line-height:1.25}
+.vid figcaption span{display:block;color:var(--ink-3);font-size:.95rem;line-height:1.55;margin-top:.2rem}
+.vid figcaption q{display:block;color:var(--ink-2);font-size:1rem;line-height:1.6;margin-top:.6rem;font-style:italic}
+
+/* Ablaufband */
+.agenda{border-top:1px solid var(--line);background:var(--card)}
+.agenda ol{list-style:none;margin:0 auto;padding:0;max-width:1560px;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr)}
+.agenda li{border-right:1px solid var(--line)}
+.agenda li:last-child{border-right:0}
+.agenda a{display:grid;gap:.5rem;align-content:start;padding:1.4rem clamp(16px,1.8vw,26px) 1.6rem;text-decoration:none;height:100%}
+.agenda li:first-child a{padding-left:var(--gutter)}
+.agenda li:last-child a{padding-right:var(--gutter)}
+.agenda .t{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--rot);white-space:nowrap}
+.agenda .h{font-family:var(--display);font-weight:700;font-size:1.14rem;line-height:1.28}
+.agenda .d{font-size:.95rem;color:var(--ink-3);line-height:1.5}
+.agenda a:hover .h{color:var(--rot)}
+@media (max-width:900px){.agenda ol{grid-auto-flow:row;grid-template-columns:1fr 1fr}.agenda li{border-bottom:1px solid var(--line)}.agenda a{padding-inline:var(--gutter)}}
+@media (max-width:520px){.agenda ol{grid-auto-flow:row;grid-template-columns:1fr}}
+
+/* ---------- Karten ---------- */
+.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(1.1rem,2vw,1.9rem)}
+.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:clamp(1.1rem,2vw,1.7rem)}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(.9rem,1.6vw,1.4rem)}
+@media (max-width:1000px){.g4{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.g4{grid-template-columns:1fr}}
+
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  padding:clamp(1.3rem,2.2vw,1.9rem);display:grid;gap:.8rem;align-content:start;box-shadow:var(--shadow);
+}
+.card h3{font-size:1.28rem;line-height:1.24}
+.card p,.card li{color:var(--ink-2);font-size:1.04rem;line-height:1.58}
+.card ul{padding-left:1.25rem;display:grid;gap:.55rem}
+.card li::marker{color:var(--rot)}
+.card .tag{font-size:.78rem;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
+.card.accent{border-color:var(--rot)}
+.card.accent .tag{color:var(--rot)}
+
+.statrow{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+@media (max-width:1080px){.statrow{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:560px){.statrow{grid-template-columns:repeat(2,1fr)}}
+.stat{background:var(--card);padding:1.5rem 1.3rem;display:grid;gap:.4rem;align-content:start}
+.stat .v{font-family:var(--display);font-weight:800;font-size:clamp(2rem,3.4vw,3rem);line-height:.95;letter-spacing:-.035em;font-variant-numeric:tabular-nums}
+.stat .v.r{color:var(--rot)} .stat .v.o{color:var(--orange)} .stat .v.m{color:var(--violett)}
+.stat .l{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);line-height:1.55}
+
+.quote{
+  border-left:4px solid transparent;border-image:var(--verlauf) 1;
+  padding:.4rem 0 .4rem 1.5rem;font-size:clamp(1.2rem,2.1vw,1.7rem);
+  font-family:var(--display);font-weight:500;line-height:1.35;letter-spacing:-.018em;
+}
+.quote cite{display:block;font-family:var(--mono);font-size:.78rem;font-style:normal;color:var(--ink-3);margin-top:.9rem;letter-spacing:.07em;text-transform:uppercase;word-spacing:.16em}
+
+.note{background:var(--rot-soft);border-radius:var(--r);padding:1.3rem 1.5rem;display:grid;gap:.5rem}
+.note .tag{font-size:.78rem;letter-spacing:.11em;text-transform:uppercase;color:var(--rot)}
+.note p{color:var(--ink-2);font-size:1.05rem;line-height:1.58}
+.note.v{background:var(--violett-soft)}
+.note.v .tag{color:var(--violett)}
+.note.o{background:var(--orange-soft)}
+.note.o .tag{color:var(--orange)}
+
+/* ---------- Tabs ---------- */
+.tabs{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:1.5rem}
+.tabs button{
+  font-family:var(--mono);font-size:.84rem;letter-spacing:.07em;word-spacing:.16em;text-transform:uppercase;
+  padding:.6rem 1.15rem;border:1px solid var(--line-2);background:var(--card);color:var(--ink-3);
+  border-radius:999px;cursor:pointer;
+}
+.tabs button[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.tabpanel{display:grid;gap:1.3rem}
+
+/* ---------- Sitznachbar ---------- */
+.icebreak{background:var(--ink);color:#fff;border-radius:var(--r);padding:clamp(1.6rem,3.2vw,2.8rem);display:grid;gap:1.3rem}
+.icebreak .eyebrow{color:#ffb9ad}
+.icebreak .q{font-family:var(--display);font-weight:700;font-size:clamp(1.5rem,3.4vw,2.6rem);line-height:1.2;letter-spacing:-.025em;min-height:2.4em;display:flex;align-items:center}
+.icebreak .q span{transition:opacity .25s}
+.icebreak .row{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center}
+.icebreak .btn{border-color:rgba(255,255,255,.4);color:#fff;background:transparent}
+.icebreak .btn:hover{background:#fff;color:var(--ink);border-color:#fff}
+.icebreak .btn.primary{background:var(--orange);border-color:var(--orange);color:#fff}
+.icebreak .btn.primary:hover{background:#fff;color:var(--ink);border-color:#fff}
+.icebreak .counter{font-family:var(--mono);font-size:.8rem;color:rgba(255,255,255,.55);letter-spacing:.07em;word-spacing:.16em}
+.icebreak .sub{color:rgba(255,255,255,.74);font-size:1rem;max-width:64ch;line-height:1.62}
+
+/* ---------- Semesterplan ---------- */
+.plan{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--card)}
+.planrow{
+  display:grid;grid-template-columns:3.4rem 8.4rem 1fr auto;gap:1.3rem;align-items:center;
+  padding:.95rem 1.2rem;border-bottom:1px solid var(--line);
+}
+.planrow:last-child{border-bottom:0}
+.planrow .n{font-size:.9rem;color:var(--ink-3)}
+.planrow .d{font-size:.95rem;color:var(--ink-2)}
+.planrow .t{font-weight:600;font-size:1.07rem;line-height:1.38}
+.planrow.free{background:var(--paper-2)}
+.planrow.free .t{color:var(--ink-3);font-weight:400;font-style:italic}
+.planrow.here{background:var(--rot-soft)}
+.planrow.here .t,.planrow.here .d,.planrow.here .n{color:var(--rot);font-weight:600}
+.planrow .badge{font-size:.69rem;letter-spacing:.09em;text-transform:uppercase;padding:.28rem .7rem;border-radius:999px;background:var(--violett-soft);color:var(--violett);white-space:nowrap}
+.planrow .badge.g{background:var(--paper-2);color:var(--ink-3);border:1px solid var(--line-2)}
+@media (max-width:760px){.planrow{grid-template-columns:2.6rem 1fr;row-gap:.35rem;gap:.9rem}.planrow .d{grid-column:2}.planrow .t{grid-column:2}.planrow .badge{grid-column:2;justify-self:start}}
+
+/* ---------- Forschungsschritte ---------- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem}
+@media (max-width:900px){.steps{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.steps{grid-template-columns:1fr}}
+.step{
+  text-align:left;background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  padding:1.1rem 1.15rem 1.25rem;cursor:pointer;display:grid;gap:.4rem;align-content:start;
+  font-family:inherit;font-size:inherit;color:inherit;transition:border-color .15s,transform .15s,box-shadow .15s;
+}
+.step:hover{border-color:var(--rot);transform:translateY(-2px);box-shadow:var(--shadow)}
+.step .n{font-size:.85rem;color:var(--ink-3)}
+.step .h{font-family:var(--display);font-weight:700;font-size:1.14rem;line-height:1.24}
+.step .s{font-size:.94rem;color:var(--ink-3);line-height:1.48}
+.step[aria-pressed="true"]{background:var(--ink);border-color:var(--ink)}
+.step[aria-pressed="true"] .n{color:#ffb9ad}
+.step[aria-pressed="true"] .h,.step[aria-pressed="true"] .s{color:#fff}
+.stepout{margin-top:1.4rem;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:clamp(1.3rem,2.6vw,2rem);display:grid;gap:.8rem;min-height:9rem;box-shadow:var(--shadow)}
+.stepout .k{font-family:var(--mono);font-size:.76rem;letter-spacing:.11em;text-transform:uppercase;color:var(--rot);word-spacing:.16em}
+.stepout h4{font-size:1.46rem}
+.stepout p{color:var(--ink-2);line-height:1.6;font-size:1.06rem}
+
+/* ---------- Quiz ---------- */
+.quiz{display:grid;gap:1rem}
+.qitem{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1.2rem 1.35rem;display:grid;gap:.9rem}
+.qitem .txt{font-size:1.07rem;line-height:1.56}
+.qitem .opts{display:flex;flex-wrap:wrap;gap:.45rem}
+.qitem .opts button{
+  font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;
+  padding:.48rem .9rem;border:1px solid var(--line-2);background:var(--paper);color:var(--ink-2);
+  border-radius:999px;cursor:pointer;
+}
+.qitem .opts button:hover{border-color:var(--ink);color:var(--ink)}
+.qitem .opts button.sel{background:var(--ink);border-color:var(--ink);color:#fff}
+.qitem .opts button.ok{background:var(--gruen);border-color:var(--gruen);color:#fff}
+.qitem .opts button.no{background:var(--rot);border-color:var(--rot);color:#fff}
+.qitem .fb{font-size:1rem;color:var(--ink-3);display:none;line-height:1.6}
+.qitem.done .fb{display:block}
+.quizbar{display:flex;flex-wrap:wrap;gap:.8rem;align-items:center}
+.quizbar .score{font-family:var(--mono);font-size:.87rem;color:var(--ink-2);word-spacing:.16em}
+
+/* ---------- Quellencheck ---------- */
+.srcgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+@media (max-width:1000px){.srcgrid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:620px){.srcgrid{grid-template-columns:1fr}}
+.srccard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1.2rem;display:grid;gap:.8rem;align-content:start}
+.srccard .ref{font-size:1.01rem;line-height:1.52;color:var(--ink-2)}
+.srccard .ref b{color:var(--ink);font-weight:600}
+.srccard .row{display:flex;gap:.4rem;flex-wrap:wrap}
+.srccard .row button{flex:1;min-width:82px;font-size:.74rem;letter-spacing:.05em;text-transform:uppercase;padding:.5rem .35rem;border:1px solid var(--line-2);background:var(--paper);color:var(--ink-3);border-radius:8px;cursor:pointer}
+.srccard .row button:hover{border-color:var(--ink);color:var(--ink)}
+.srccard .row button.sel{background:var(--ink);color:#fff;border-color:var(--ink)}
+.srccard .row button.ok{background:var(--gruen);border-color:var(--gruen);color:#fff}
+.srccard .row button.no{background:var(--rot);border-color:var(--rot);color:#fff}
+.srccard .ans{font-size:.97rem;color:var(--ink-3);line-height:1.55;display:none}
+.srccard.done .ans{display:block}
+
+/* ---------- Projekt ---------- */
+.projgrid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(1.4rem,2.8vw,2.8rem);align-items:start}
+@media (max-width:960px){.projgrid{grid-template-columns:1fr}}
+.calc{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:clamp(1.3rem,2.4vw,1.9rem);display:grid;gap:1.2rem;box-shadow:var(--shadow)}
+.calc label{display:grid;gap:.45rem;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.calc input[type=range]{width:100%;accent-color:var(--rot)}
+.calc .val{font-family:var(--display);font-weight:700;font-size:1.65rem;color:var(--ink);letter-spacing:-.025em}
+.calc .out{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.calc .out div{background:var(--paper);padding:1rem;display:grid;gap:.25rem}
+.calc .out .n{font-family:var(--display);font-weight:800;font-size:1.9rem;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.calc .out .c{font-family:var(--mono);font-size:.71rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);word-spacing:.16em}
+.calc .verdict{font-size:1.03rem;color:var(--ink-2);min-height:2.8em;line-height:1.56}
+.calc .verdict b{color:var(--rot)}
+
+.outline{list-style:none;padding:0;display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.outline li{background:var(--card);padding:.95rem 1.15rem;display:grid;grid-template-columns:2.2rem 1fr;gap:.9rem;align-items:baseline}
+.outline li .n{font-family:var(--mono);font-size:.82rem;color:var(--rot)}
+.outline li b{font-weight:600;display:block;font-size:1.06rem;line-height:1.38}
+.outline li span.d{color:var(--ink-3);font-size:.97rem;line-height:1.55;display:block;margin-top:.15rem}
+
+/* ---------- NPS ---------- */
+.npsscale{display:grid;grid-template-columns:repeat(10,1fr);gap:6px}
+@media (max-width:560px){.npsscale{grid-template-columns:repeat(5,1fr)}}
+.npsscale button{
+  aspect-ratio:1;border-radius:10px;border:1px solid var(--line-2);background:var(--card);
+  font-family:var(--mono);font-size:1rem;font-weight:500;color:var(--ink-2);cursor:pointer;
+  display:grid;place-items:center;transition:transform .12s;
+}
+.npsscale button:hover{transform:translateY(-3px)}
+.npsscale button.det{background:#fbe3e0;border-color:#f0b9b2;color:#8f2418}
+.npsscale button.pas{background:#fdf1d8;border-color:#f0d9a4;color:#7d5c12}
+.npsscale button.pro{background:#ddefe4;border-color:#a9d6bd;color:#146043}
+.npsscale button.picked{outline:3px solid var(--ink);outline-offset:2px}
+.npslabels{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.75rem;color:var(--ink-3);letter-spacing:.04em;margin-top:.6rem;word-spacing:.16em;gap:1rem}
+.npsmeter{display:grid;gap:.7rem}
+.npsbar{height:38px;display:flex;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.npsbar span{display:grid;place-items:center;font-family:var(--mono);font-size:.8rem;color:#151518;transition:flex-basis .3s}
+.npsbar .d{background:#ef968b}.npsbar .p{background:#f5d999}.npsbar .r{background:#93ceac}
+.npsnum{font-family:var(--display);font-weight:800;font-size:clamp(2.8rem,6vw,4.8rem);line-height:.9;letter-spacing:-.035em;font-variant-numeric:tabular-nums}
+.npsrow{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem}
+.npsrow label{display:grid;gap:.35rem;font-size:.74rem;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3)}
+.npsrow input{font-family:var(--mono);font-size:1.1rem;padding:.6rem .7rem;border:1px solid var(--line-2);border-radius:8px;background:var(--paper);color:var(--ink);width:100%}
+
+/* ---------- Literatur / Footer ---------- */
+.lit{display:grid;gap:1.1rem}
+.litem{display:grid;grid-template-columns:7.2rem 1fr;gap:1.1rem;align-items:baseline;padding-bottom:1.1rem;border-bottom:1px solid var(--line)}
+.litem .k{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--rot);white-space:nowrap;padding-top:.15rem}
+@media (max-width:620px){.litem{grid-template-columns:1fr;gap:.3rem}}
+.litem p{font-size:1.05rem;color:var(--ink-2);line-height:1.58}
+.litem b{color:var(--ink)}
+footer{padding:3rem var(--gutter) 4rem;border-top:1px solid var(--line);background:var(--paper-2)}
+footer .wrap{display:grid;gap:1.2rem;font-family:var(--mono);font-size:.86rem;color:var(--ink-3);line-height:1.75;word-spacing:.14em}
+footer a{color:var(--ink-2)}
+
+.qr{display:flex;gap:1.2rem;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1.2rem}
+.qr img{width:112px;height:112px;flex:none;background:#fff;padding:6px;border-radius:8px}
+.qr div{display:grid;gap:.35rem}
+.qr b{font-size:1.02rem}
+.qr span{font-size:.9rem;color:var(--ink-3);word-break:break-all;line-height:1.5}
+
+/* Große QR-Folie */
+.qrbig{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(1.2rem,2.6vw,2.4rem);align-items:center}
+@media (max-width:860px){.qrbig{grid-template-columns:1fr}}
+.qrcard{margin:0;display:grid;gap:.8rem;justify-items:center;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:clamp(1rem,2vw,1.6rem);box-shadow:var(--shadow)}
+.qrcard img{width:100%;max-width:340px;aspect-ratio:1;object-fit:contain;background:#fff;border-radius:8px}
+.qrcard figcaption{font-family:var(--mono);font-size:.8rem;letter-spacing:.05em;word-spacing:.14em;color:var(--ink-3);text-align:center;line-height:1.6}
+.qrtext{display:grid;gap:1.1rem;align-content:center}
+body.deck .qrcard img{max-width:min(460px,50vh)}
+body.deck .qrcard{padding:1rem}
+body.deck .qrbig{grid-template-columns:1fr 1fr;gap:clamp(1rem,2.2vw,2rem)}
+
+.hint{font-size:.84rem;color:var(--ink-3);letter-spacing:.04em;line-height:1.7}
+.hint kbd{border:1px solid var(--line-2);border-bottom-width:2px;border-radius:5px;padding:.1em .45em;font-family:inherit;font-size:.95em;background:var(--card);color:var(--ink-2)}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+
+/* =========================================================
+   PRÄSENTATIONSMODUS
+   ========================================================= */
+#deckbar{
+  position:fixed;left:0;right:0;bottom:0;z-index:90;
+  background:var(--ink);color:#fff;
+  display:flex;align-items:center;gap:.75rem;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;
+  padding:.65rem clamp(12px,2vw,24px);
+  padding-bottom:calc(.7rem + env(safe-area-inset-bottom,0px));
+  font-family:var(--mono);font-size:.8rem;word-spacing:.16em;
+}
+#deckbar[hidden]{display:none}
+#deckbar .chap{color:#ffb9ad;text-transform:uppercase;letter-spacing:.09em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:22vw;flex:none}
+#deckbar .count{color:rgba(255,255,255,.62);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:30vw}
+#deckbar .dclock{font-size:1.02rem;font-weight:600;color:#fff;white-space:nowrap;flex:none}
+#deckbar .dnow{color:rgba(255,255,255,.55);font-size:.72rem;text-transform:uppercase;letter-spacing:.07em;white-space:nowrap;flex:none}
+#deckbar .spacer{flex:1;min-width:6px}
+#deckbar .zoomwrap{display:flex;align-items:center;gap:.2rem;flex:0 0 auto}
+#deckbar .zoomwrap .zv{font-family:var(--mono);font-size:.72rem;color:#c8c8d2;min-width:3.1rem;text-align:center;font-variant-numeric:tabular-nums}
+#deckbar button{
+  background:transparent;border:1px solid rgba(255,255,255,.32);color:#fff;
+  font-family:var(--mono);font-size:.74rem;text-transform:uppercase;letter-spacing:.06em;word-spacing:.12em;
+  padding:.42rem .75rem;border-radius:999px;cursor:pointer;white-space:nowrap;flex:none;
+}
+#deckbar button:hover{background:rgba(255,255,255,.16)}
+#deckbar button.nav{font-size:1.05rem;padding:.3rem .95rem;letter-spacing:0}
+#deckbar .dprog{position:absolute;left:0;top:0;height:3px;background:var(--verlauf);width:0;transition:width .2s}
+
+body.deck{overflow:hidden}
+body.deck nav.top,body.deck #timerbar,body.deck #progress,body.deck footer,body.deck .agenda{display:none}
+body.deck section,body.deck header.hero{padding:0;border:0;background:transparent}
+body.deck section.alt{background:transparent}
+body.deck .wrap,body.deck .narrow,body.deck .hero-inner{max-width:none;padding:0;margin:0}
+body.deck .slide{display:none}
+body.deck .slide.on{
+  display:block;position:fixed;left:0;right:0;top:0;bottom:54px;
+  overflow-y:auto;overflow-x:hidden;background:var(--paper);
+  padding:clamp(1.8rem,4.2vh,3.6rem) clamp(20px,4.5vw,72px) clamp(2rem,4vh,3rem);
+  scrollbar-width:thin;
+}
+body.deck .slide.on{display:grid;align-content:start}
+@supports (align-content:safe center){body.deck .slide.on{align-content:safe center}}
+body.deck .slide.on .inner{max-width:min(94vw,calc(1360px * var(--zoom,1)));margin-inline:auto;width:100%}
+body.deck .hero-art img{aspect-ratio:16/10;max-height:46vh}
+body.deck .hero-cta{display:none}
+body.deck .slide.on.welcome{background:var(--paper);min-height:0;padding-inline:clamp(20px,4.5vw,72px)}
+body.deck .welcome .tear img{max-height:42vh}
+body.deck .agenda li:first-child a{padding-left:clamp(14px,1.5vw,22px)}
+body.deck .agenda li:last-child a{padding-right:clamp(14px,1.5vw,22px)}
+body.deck .agenda a{padding-inline:clamp(14px,1.5vw,22px);padding-block:1.1rem}
+body.deck .agenda ol{max-width:none;width:100%}
+body.deck .planrow{padding-block:.6rem}
+body.deck .plan .badge{font-size:.66rem}
+body.deck .slide.on{padding-block:clamp(1.1rem,2.8vh,2.4rem);overflow-y:auto;scrollbar-width:none}
+body.deck .slide.on::-webkit-scrollbar{width:0;height:0}
+body.deck .blocklead{margin-bottom:clamp(.8rem,1.6vh,1.2rem)}
+body.deck h3.blockhead{margin-bottom:.55rem}
+body.deck .card{padding:1.05rem 1.2rem;gap:.55rem}
+body.deck .card ul{gap:.4rem}
+body.deck .note{padding:1rem 1.2rem}
+body.deck .quiz{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+body.deck .qitem{padding:.85rem 1rem;gap:.55rem}
+body.deck .qitem .txt{font-size:.94rem;line-height:1.45}
+body.deck .qitem .opts button{padding:.36rem .7rem;font-size:.72rem}
+body.deck .outline{grid-template-columns:1fr 1fr}
+body.deck .outline li{padding:.7rem .9rem}
+body.deck .steps{gap:.6rem}
+body.deck .step{padding:.75rem .9rem .85rem;gap:.25rem}
+body.deck .step .s{font-size:.84rem;line-height:1.4}
+body.deck .stepout{min-height:6.5rem;padding:1rem 1.25rem;margin-top:1rem}
+body.deck .srccard{padding:.9rem 1rem;gap:.55rem}
+body.deck .srccard .ref{font-size:.95rem;line-height:1.42}
+body.deck .welcome .tear img{max-height:33vh}
+body.deck .welcome-inner{gap:clamp(1.1rem,2.4vh,2rem)}
+body.deck .wtext{gap:clamp(.6rem,1.3vh,1.1rem)}
+body.deck .wfacts .v{font-size:clamp(1.7rem,3.2vw,2.6rem)}
+body.deck .wfacts{margin-top:0}
+body.deck .vid .frame{aspect-ratio:16/10}
+body.deck .vid figcaption span{font-size:.9rem}
+body.deck .lit{gap:.8rem}
+body.deck .litem{padding-bottom:.8rem}
+body.deck .statrow .stat{padding:1.1rem 1.1rem}
+body.deck .g4{gap:.8rem}
+body.deck .welcome .tear img{max-height:29vh}
+body.deck .welcome h1{font-size:clamp(2rem,4.4vw,3.6rem)}
+body.deck .wsub{font-size:clamp(1rem,1.3vw,1.2rem)}
+body.deck .wmeta{font-size:.74rem}
+body.deck .vid .frame{aspect-ratio:2/1}
+body.deck .vid{gap:.6rem}
+body.deck .vid figcaption b{font-size:1.05rem}
+body.deck .stepout{min-height:5rem;padding:.9rem 1.15rem;margin-top:.8rem}
+body.deck .stepout h4{font-size:1.2rem}
+body.deck .calc{padding:1.1rem 1.2rem;gap:.8rem}
+body.deck .calc .val{font-size:1.35rem}
+body.deck .calc .out div{padding:.75rem .85rem}
+body.deck .calc .out .n{font-size:1.6rem}
+body.deck .calc .verdict{min-height:0;font-size:.94rem}
+body.deck .slide.on .hint{display:none}
+body.deck .projgrid{gap:1.1rem}
+body.deck .stepout{min-height:4.5rem}
+body.deck .steps{gap:.5rem}
+body.deck .stepout{min-height:0}
+body.deck .deck-hide,body.deck .wcta{display:none}
+body.deck .chaphead .num{font-size:clamp(4rem,9vw,8rem)}
+body.deck .chaphead h2{font-size:clamp(2.3rem,5vw,4rem)}
+body.deck .lead{font-size:clamp(1.15rem,1.55vw,1.5rem)}
+body.deck .slide.on .hero-inner{display:grid;grid-template-columns:1.3fr .8fr;gap:clamp(2rem,4vw,4.5rem);align-items:center;max-width:1360px;margin-inline:auto}
+@media (max-width:980px){body.deck .slide.on .hero-inner{grid-template-columns:1fr}}
+body.deck .slide + .slide{margin-top:0}
+body.deck{font-size:clamp(19px,1.38vw,25px)}
+
+/* Folienübersicht */
+#deckIndex{
+  position:fixed;inset:0;bottom:56px;z-index:88;background:var(--paper);
+  overflow:auto;padding:clamp(1.5rem,4vw,3rem);
+}
+#deckIndex[hidden]{display:none}
+#deckIndex h3{font-size:1.5rem;margin-bottom:1.2rem}
+#deckIndex ol{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:.6rem;max-width:1360px;margin-inline:auto}
+#deckIndex li button{
+  width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:.8rem 1rem;cursor:pointer;display:grid;gap:.2rem;font-family:inherit;color:inherit;
+}
+#deckIndex li button:hover{border-color:var(--rot)}
+#deckIndex li button .n{font-family:var(--mono);font-size:.74rem;color:var(--rot);letter-spacing:.08em;word-spacing:.16em}
+#deckIndex li button .t{font-weight:600;font-size:1rem;line-height:1.35}
+#deckIndex li button .c{font-size:.83rem;color:var(--ink-3)}
+#deckIndex li button.cur{background:var(--ink);border-color:var(--ink)}
+#deckIndex li button.cur .t,#deckIndex li button.cur .c{color:#fff}
+#deckIndex li button.cur .n{color:#ffb9ad}
+
+/* ---------- Druck / PDF ---------- */
+@page{size:A4;margin:16mm 14mm}
+@media print{
+  :root{--paper:#fff;--paper-2:#fff;--card:#fff;--ink:#000;--ink-2:#222;--ink-3:#555;--line:#ccc;--line-2:#bbb;--rot-soft:#f5f5f5;--violett-soft:#f5f5f5;--orange-soft:#f5f5f5;--shadow:none;--r:6px}
+  nav.top,#timerbar,#progress,.hero-cta,.toolbtn,.quizbar,.hint,#deckbar,#deckIndex{display:none!important}
+  body{font-size:10.5pt;background:#fff;color:#000;line-height:1.5}
+  section{padding-block:1.1rem;padding-inline:0}
+  section.alt{background:#fff}
+  .wrap,.narrow{max-width:none}
+  .slide + .slide{margin-top:1.4rem}
+  header.hero{border-bottom:2px solid #000}
+  .hero-inner{padding:0 0 1rem;grid-template-columns:1fr}
+  .welcome{background:#fff!important;color:#000;padding:0 0 1rem;min-height:0}
+  .welcome h1{font-size:26pt;color:#000}
+  .welcome h1 em{color:#c81e0f;-webkit-text-fill-color:#c81e0f;background:none}
+  .weyebrow{color:#c81e0f!important}
+  .wsub,.wmeta,.wfacts .l{color:#333!important}
+  .wfacts .v{color:#c81e0f!important;-webkit-text-fill-color:#c81e0f;background:none}
+  .wcta{display:none}
+  .tear,.wtext{animation:none}
+  .tear img{max-height:62mm;object-fit:cover}
+  .vidgrid{grid-template-columns:1fr 1fr!important;gap:8mm}
+  .vid{break-inside:avoid}
+  .vid .frame{aspect-ratio:16/8}
+  .vid .ph{background:#f0f0f0!important;color:#000!important}
+  .vid .ph small,.vid .ph b{color:#000!important}
+  .vid .ph .disc{border-color:#888;background:#fff}
+  .vid .ph .disc span{border-left-color:#333}
+  .hero h1{font-size:26pt}
+  .hero h1 em{color:#c81e0f;-webkit-text-fill-color:#c81e0f}
+  .chaphead .num{color:#c81e0f;-webkit-text-fill-color:#c81e0f;background:none}
+  .hero-art{display:none}
+  .agenda ol{grid-auto-flow:row;grid-auto-columns:auto;grid-template-columns:repeat(3,minmax(0,1fr))}
+  .agenda .t{white-space:normal}
+  .agenda li{border-bottom:1px solid #ddd}
+  .agenda a{padding:.55rem .8rem}
+  .agenda li:first-child a,.agenda li:last-child a{padding-inline:.8rem}
+  .agenda{break-before:avoid;break-inside:avoid}
+  .agenda li,.agenda a{break-inside:avoid;height:auto}
+  .agenda a{padding:.6rem .5rem}
+  .chaphead,h3.blockhead,.eyebrow{break-after:avoid}
+  .btn{border:0!important;background:none!important;color:#c81e0f!important;padding:0!important;font-weight:600}
+  section[id]{break-before:page}
+  section#willkommen{break-before:auto}
+  .card,.qitem,.srccard,.stat,.planrow,.litem,.step,.outline li,.note,.icebreak{break-inside:avoid}
+  .icebreak{background:#f5f5f5;color:#000;border:1px solid #bbb}
+  .icebreak *{color:#000!important}
+  .icebreak .eyebrow{color:#c81e0f!important}
+  .icebreak .q,.icebreak .row,.icebreak .counter{display:none}
+  .tabs{display:none}
+  .tabpanel{display:grid!important}
+  .tabpanel::before{content:attr(data-printlabel);font-family:var(--mono);font-size:8.5pt;letter-spacing:.1em;text-transform:uppercase;color:#c81e0f}
+  .qitem .fb,.srccard .ans{display:block!important}
+  .stepout{display:none}
+  .printonly{display:block!important}
+  .step[aria-pressed]{background:#fff!important;border-color:#bbb!important}
+  .step .h,.step .s,.step .n{color:#000!important}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-family:var(--mono);font-size:7.5pt;color:#666;word-break:break-all}
+  .npsscale button{aspect-ratio:auto;padding:.35rem}
+  .qrbig{grid-template-columns:.8fr 1.2fr;break-inside:avoid}
+  .qrcard{box-shadow:none;border-color:#bbb}
+  .qrcard img{max-width:60mm}
+}
+.printonly{display:none}
+.printonly .pb{break-inside:avoid;padding:.45rem 0;border-bottom:1px solid #ddd;display:grid;grid-template-columns:auto 1fr;gap:.9rem}
+.printonly .pb .n{font-family:var(--mono);font-size:9pt;color:#c81e0f;white-space:nowrap}
+.printonly .pb b{display:block;line-height:1.45}
+
+/* ---------- Schrittweises Einblenden im Präsentationsmodus ---------- */
+body.deck .build-hidden{visibility:hidden}
+body.deck .build-in{animation:buildIn .32s cubic-bezier(.2,.75,.25,1) both}
+@keyframes buildIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){body.deck .build-in{animation:none}}
+#deckbar .steps-ind{font-family:var(--mono);font-size:.78rem;color:#ffb9ad;white-space:nowrap;letter-spacing:.06em;flex:none;min-width:2.6em;text-align:right}
+#deckbar button[aria-pressed="true"]{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.7)}
+
+/* ---------- Feinschliff: Folien, die knapp über die Bildhöhe liefen ---------- */
+body.deck .slide.eng .inner{zoom:.94}
+body.deck .slide.eng .card,body.deck .slide.eng .note{padding:.85rem 1rem;gap:.45rem}
+body.deck .slide.eng .card p,body.deck .slide.eng .card li,body.deck .slide.eng .note p{font-size:.95rem;line-height:1.45}
+body.deck .slide.eng .card h3{font-size:1.15rem}
+body.deck .slide.eng .blocklead{margin-bottom:.6rem}
+body.deck .slide.eng .g2,body.deck .slide.eng .g3,body.deck .slide.eng .g4{gap:.8rem}
+
+
+/* ============ Korrekturen Vorlesung 1 ============ */
+@media print{
+  /* 2) Kein Standbild der Person im PDF, nur ein neutraler Platzhalter */
+  #alumniGrid .vid .frame.mitvideo video{display:none}
+  #alumniGrid .vid .frame.mitvideo{background:#f0f0f0!important;border:1px solid #bbb;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #alumniGrid .vid .frame.mitvideo::after{
+    content:"Videobotschaft · wird in der Vorlesung abgespielt";
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    text-align:center;padding:1rem;
+    font-family:var(--mono);font-size:8.5pt;letter-spacing:.09em;word-spacing:.16em;
+    text-transform:uppercase;color:#444;
+  }
+
+  /* 3) Überschrift und Inhalt bleiben zusammen */
+  .slide{break-inside:avoid}
+
+  /* 1) Semesterplan: beide Hälften kompakt auf einer Seite */
+  .slide[data-title="Semesterplan, erste Hälfte"]{break-before:page}
+  .slide[data-title="Semesterplan, zweite Hälfte"]{break-before:avoid}
+  /* Die Regel fuer schmale Bildschirme griff auch auf A4 und hat die Zeilen gestapelt */
+  .plan .planrow{padding:.38rem .85rem;gap:.9rem;row-gap:0;
+    grid-template-columns:2.4rem 7.6rem minmax(0,1fr) auto;align-items:baseline}
+  .plan .planrow .n,.plan .planrow .d,.plan .planrow .t,.plan .planrow .badge{grid-column:auto;justify-self:auto}
+  .plan .planrow .t{font-size:.97rem;line-height:1.3}
+  .plan .planrow .d,.plan .planrow .n{font-size:.84rem}
+  .plan .planrow .badge{font-size:.62rem;padding:.2rem .5rem}
+  .slide[data-title="Semesterplan, zweite Hälfte"] .eyebrow{margin-top:.6rem}
+
+  /* 3) Auftragsliste geschlossen halten */
+  .outline li{padding:.6rem 1rem}
+  .outline li b{font-size:1rem}
+  .outline li span.d{font-size:.91rem;margin-top:.1rem}
+}
+/* Ausgeblendete Tabpanels blieben in der Einzeldatei sichtbar, weil .tabpanel die
+   Standardregel des Browsers für [hidden] überschrieben hat. */
+[hidden]{display:none!important}
+/* Im Druck sollen weiterhin alle drei Tabs untereinander erscheinen */
+@media print{.tabpanel[hidden]{display:grid!important}}
+/* 3) Kapitelzahl wurde am rechten Rand beschnitten (background-clip:text + negatives letter-spacing) */
+.chaphead .num{padding-right:.09em;letter-spacing:-.035em}
+
+/* 4) Lange Komposita in Kartenüberschriften sauber umbrechen */
+.card h3,.litem b,.qr b{overflow-wrap:break-word;hyphens:auto}
+.card h3{line-height:1.2}
+
+/* 6) QR-Code auf der Miro-Folie größer: Code oben, Text darunter */
+.slide[data-title="Miro-Board"] .qr{flex-direction:column;align-items:stretch;gap:.9rem}
+.slide[data-title="Miro-Board"] .qr img{width:100%;max-width:230px;height:auto;aspect-ratio:1;margin-inline:auto}
+body.deck .slide[data-title="Miro-Board"] .qr img{max-width:min(280px,30vh)}
+.qr img{width:150px;height:150px}
+@media print{.slide[data-title="Miro-Board"] .qr img{max-width:46mm}}
+
+/* 7) Mehr Luft zwischen Zierstrich und Text im Zitat */
+.quote{padding-left:2.1rem;border-left-width:5px}
+body.deck .quote{padding-left:2.1rem}
+@media print{.quote{padding-left:1.6rem}}
+
+/* Hochformat-Video: ganzes Bild zeigen statt beschneiden */
+.vid .frame.hoch{background:#111318}
+.vid .frame.hoch video{object-fit:contain}
+#alumniGrid .vid .frame{aspect-ratio:4/3}
+body.deck #alumniGrid .vid .frame{aspect-ratio:3/2}
+body.deck .slide[data-title="Stimmen von Ehemaligen"]{padding-block:1.6rem!important}
+body.deck .slide[data-title="Stimmen von Ehemaligen"] .blocklead{margin-bottom:.7rem}
+@media print{#alumniGrid .vid .frame{aspect-ratio:4/3}}
+
+/* ============ Vorstellung des Instituts, Newsletter, Recherche ============ */
+/* Hinweis: alle Breakpoints hier bewusst mit "screen", sonst greifen sie auch
+   auf A4 (ca. 690 bis 790 px) und zerlegen das Raster im PDF. */
+
+/* --- Slogan auf der Eingangsfolie --- */
+.claim{margin-top:clamp(1.3rem,2.6vw,2.1rem);display:grid;gap:.22rem}
+.claimmark{font-family:var(--display);font-weight:500;font-size:clamp(2rem,4.4vw,3.3rem);letter-spacing:-.035em;line-height:1;color:var(--orange)}
+.claimmark em{font-style:normal;font-weight:800;color:inherit}
+.claimsub{font-family:var(--display);font-weight:700;font-size:clamp(1.02rem,1.75vw,1.42rem);line-height:1.26;max-width:48ch;text-wrap:balance}
+.claimline{margin-top:.8rem;max-width:44ch;text-wrap:balance;font-family:var(--display);font-weight:500;
+  font-size:clamp(1.3rem,2.9vw,2.15rem);line-height:1.22;letter-spacing:-.022em;color:var(--ink-2)}
+.claimline em{font-style:normal;font-weight:800}
+.claimline em.a{color:var(--rot)}
+.claimline em.b{color:var(--orange)}
+.claimline em.c{color:var(--violett)}
+
+.zaehne{margin-top:clamp(1.1rem,2.3vw,1.9rem);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(.8rem,1.6vw,1.25rem)}
+@media screen and (max-width:860px){.zaehne{grid-template-columns:1fr}}
+.zahn{border-radius:var(--r);padding:clamp(.95rem,1.8vw,1.35rem);display:grid;gap:.35rem;align-content:start;border:1px solid transparent}
+.zahn .k{font-family:var(--display);font-weight:800;font-size:1.26rem;letter-spacing:-.022em;line-height:1.1}
+.zahn p{font-size:1rem;line-height:1.52;color:var(--ink-2)}
+.zahn.a{background:var(--rot-soft);border-color:color-mix(in srgb,var(--rot) 24%,transparent)}
+.zahn.a .k{color:var(--rot)}
+.zahn.b{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 24%,transparent)}
+.zahn.b .k{color:var(--orange)}
+.zahn.c{background:var(--violett-soft);border-color:color-mix(in srgb,var(--violett) 24%,transparent)}
+.zahn.c .k{color:var(--violett)}
+body.deck .claim{margin-top:clamp(.9rem,2vh,1.6rem)}
+body.deck .zahn{padding:.8rem .95rem}
+body.deck .zahn p{font-size:.93rem;line-height:1.45}
+@media print{
+  .claimline{font-size:17pt}
+  .claimmark{font-size:22pt;color:#ea5a00;-webkit-text-fill-color:#ea5a00;background:none}
+  .zaehne{grid-template-columns:repeat(3,minmax(0,1fr));gap:4mm;break-inside:avoid}
+  .zahn{border:1px solid #ccc;background:#fff!important;padding:.7rem .8rem}
+  .zahn p{font-size:9.5pt}
+}
+
+/* --- Newsletter auf der Zahlen-Folie --- */
+.nlrow{margin-top:clamp(1.2rem,2.4vw,1.9rem);display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
+  gap:clamp(1rem,2.2vw,1.8rem);align-items:center;
+  background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  padding:clamp(1rem,2vw,1.5rem);box-shadow:var(--shadow)}
+@media screen and (max-width:860px){.nlrow{grid-template-columns:1fr}}
+.nlshot{margin:0;min-width:0}
+.nlshot img{width:100%;height:auto;border-radius:8px;border:1px solid var(--line)}
+.nltext{display:grid;gap:.45rem;align-content:center;justify-items:start;min-width:0}
+.nltext .tag{font-family:var(--mono);font-size:.76rem;letter-spacing:.11em;text-transform:uppercase;color:var(--rot);word-spacing:.16em}
+.nltext b{font-family:var(--display);font-weight:700;font-size:1.22rem;line-height:1.25}
+.nltext p{color:var(--ink-2);font-size:1rem;line-height:1.55}
+.nltext p.scan{font-family:var(--mono);font-size:.8rem;letter-spacing:.05em;word-spacing:.14em;color:var(--ink-3);margin-top:.2rem}
+.nltext .btn{margin-top:.15rem}
+body.deck .nlrow{padding:.9rem 1rem;gap:1.1rem;margin-top:1rem}
+body.deck .nltext p{font-size:.93rem;line-height:1.45}
+body.deck .nltext b{font-size:1.1rem}
+@media print{
+  .nlrow{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);box-shadow:none;border-color:#bbb;
+    padding:4mm;gap:5mm;break-inside:avoid}
+  .nlshot img{border-color:#ccc}
+  .nltext .btn::after{content:none}
+  .nltext p{font-size:9.5pt}
+}
+
+/* --- Folie: Wo gute Quellen liegen --- */
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  overflow:hidden;display:grid;grid-template-rows:auto 1fr;align-content:start;box-shadow:var(--shadow)}
+.qshot{margin:0;display:block;background:var(--paper-2);border-bottom:1px solid var(--line);
+  text-decoration:none;overflow:hidden}
+.qshot img{width:100%;height:100%;object-fit:cover;object-position:50% 0}
+.qcard .qshot{aspect-ratio:1044/370}
+a.qshot:hover{filter:brightness(1.04)}
+.qtext{padding:clamp(1rem,1.9vw,1.4rem);display:grid;gap:.5rem;align-content:start}
+.qtext .tag{font-family:var(--mono);font-size:.74rem;letter-spacing:.11em;text-transform:uppercase;color:var(--rot);word-spacing:.16em}
+.qtext .tag.o{color:var(--orange)}
+.qtext h3{font-size:1.24rem;line-height:1.22}
+.qtext p{color:var(--ink-2);font-size:1rem;line-height:1.55}
+.qtext ul{padding-left:1.15rem;display:grid;gap:.35rem}
+.qtext li{color:var(--ink-2);font-size:.97rem;line-height:1.5}
+.qtext li::marker{color:var(--rot)}
+.qtext li b{color:var(--ink);font-weight:600}
+body.deck .qcard .qshot{aspect-ratio:1044/370}
+body.deck .slide[data-title="Wo gute Quellen liegen"] .blocklead{margin-bottom:.55rem}
+
+body.deck .qtext{padding:.85rem 1rem;gap:.38rem}
+body.deck .qtext p,body.deck .qtext li{font-size:.9rem;line-height:1.42}
+body.deck .qtext h3{font-size:1.1rem}
+@media print{
+  .slide[data-title="Wo gute Quellen liegen"] .g2{grid-template-columns:1fr 1fr;gap:5mm}
+  .qcard{box-shadow:none;border-color:#bbb;break-inside:avoid}
+  .qcard .qshot{aspect-ratio:1044/370;border-bottom-color:#ccc}
+  .qtext{padding:3.5mm 4mm}
+  .qtext p,.qtext li{font-size:9.5pt}
+}
+
+</style>
+
+
+
+<div id="progress"></div>
+
+<nav class="top" aria-label="Kapitel">
+  <div class="row">
+    <a class="mark" href="#top"><span class="dot"></span>BWL&nbsp;1</a>
+    <ul>
+      <li><a href="#einfuehrung"><b>01</b> Einführung</a></li>
+      <li><a href="#organisation"><b>02</b> Organisation</a></li>
+      <li><a href="#wissenschaft"><b>03</b> Wissenschaftstheorie</a></li>
+      <li><a href="#projekt"><b>04</b> Projekt</a></li>
+      <li><a href="#feedback"><b>05</b> Feedback</a></li>
+    </ul>
+    <div class="tools">
+      <button class="toolbtn accent" id="deckStart">Präsentieren</button>
+      <button class="toolbtn" id="timerToggle" aria-pressed="false" title="Taste T">Timer</button>
+      <button class="toolbtn" id="themeToggle" title="Hell oder Dunkel">Kontrast</button>
+      <button class="toolbtn" id="printBtn">PDF</button>
+    </div>
+  </div>
+</nav>
+
+<div id="timerbar" hidden>
+  <span class="clock" id="clock">00:00</span>
+  <span class="now" id="nowlabel">Bereit</span>
+  <div class="track" id="track" aria-hidden="true"></div>
+  <div class="fill" id="fill"></div>
+  <button id="tStart">Start</button>
+  <button id="tReset">Zurück</button>
+</div>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+
+  <!-- Startbildschirm -->
+  <div class="welcome slide" data-chapter="Start" data-title="Willkommen">
+    <div class="welcome-inner">
+      <figure class="tear">
+        <img src="img/willkommen.jpg" alt="Aufgerissenes Papier mit dem Schriftzug Herzlich willkommen">
+      </figure>
+      <div class="wtext">
+        <p class="weyebrow">Erste Vorlesung · Erstes Semester · Wintersemester 2026/27</p>
+        <h1>Grundlagen der <em>Betriebswirtschaftslehre</em> 1</h1>
+        <p class="wsub">Prof. Dr. Dominik Orbach · Institut für Versicherungswesen · TH Köln</p>
+        <div class="wfacts">
+          <div><span class="v" data-count="14">14</span><span class="l">Termine bis zum 28. Januar</span></div>
+          <div><span class="v" data-count="90">90</span><span class="l">Minuten, die heute vor uns liegen</span></div>
+          <div><span class="v" data-count="1">1</span><span class="l">Semester, auf dem alles Weitere aufbaut</span></div>
+        </div>
+        <div class="wcta">
+          <button class="btn primary" id="welcomeStart">Vorlesung starten</button>
+          <a class="btn" href="#einfuehrung">Zum Ablauf</a>
+        </div>
+        <p class="wmeta">Donnerstag, 8. Oktober 2026 · Hörsaal 284, 9:45 bis 11:15 Uhr · parallel als Zoom-Sitzung, 13:30 bis 15:00 Uhr</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Videobotschaften -->
+  <section class="slide" data-chapter="Start" data-title="Stimmen von Ehemaligen" style="padding-block:clamp(3rem,6vw,5rem)">
+    <div class="wrap">
+      <div class="inner">
+        <p class="eyebrow" style="margin-bottom:.7rem">Zwei Videobotschaften</p>
+        <h3 class="blockhead">Zwei, die das hier schon hinter sich haben</h3>
+        <p class="lead blocklead">Bevor ich etwas über dieses Studium erzähle, lasse ich zwei zu Wort kommen, die es abgeschlossen haben. Beide saßen vor einigen Jahren auf Ihren Plätzen.</p>
+        <div class="vidgrid" id="alumniGrid"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ablauf -->
+  <div class="agenda slide" data-chapter="Start" data-title="Ablauf der 90 Minuten">
+    <ol>
+      <li><a href="#einfuehrung"><span class="t">Minute 0 bis 20</span><span class="h">01 Einführung</span><span class="d">Institut, Werdegang, Sitznachbarn</span></a></li>
+      <li><a href="#organisation"><span class="t">Minute 20 bis 35</span><span class="h">02 Organisation</span><span class="d">Lernziele, Termine, Literatur, Miro</span></a></li>
+      <li><a href="#wissenschaft"><span class="t">Minute 35 bis 68</span><span class="h">03 Wissenschaftstheorie</span><span class="d">Neun Arbeitsschritte, Begriffe, Quellen</span></a></li>
+      <li><a href="#projekt"><span class="t">Minute 68 bis 80</span><span class="h">04 Projekt</span><span class="d">Unternehmensanalyse, Beispiel Nike</span></a></li>
+      <li><a href="#feedback"><span class="t">Minute 80 bis 90</span><span class="h">05 Feedback</span><span class="d">Net Promoter Score, Hausaufgabe</span></a></li>
+    </ol>
+  </div>
+</header>
+
+<!-- ================= 01 EINFÜHRUNG ================= -->
+<section id="einfuehrung">
+  <div class="wrap">
+
+    <div class="slide" data-chapter="01 Einführung" data-title="Willkommen im ivwKöln">
+      <div class="inner">
+        <div class="chaphead">
+          <div class="num">01</div>
+          <div>
+            <p class="eyebrow">Kapitel 01 · Einführung</p>
+            <h2>Herzlich willkommen im ivwKöln</h2>
+            <div class="meta"><span class="chip">Minute 0 bis 20</span><span class="chip n">Vorstellung und Kennenlernen</span></div>
+            <p class="lead">Sie studieren an einem Institut, das es in dieser Form in Deutschland kein zweites Mal gibt.</p>
+            <div class="claim">
+              <p class="claimmark"><em>ivw</em>Köln</p>
+              <p class="claimsub">Das Hochschulinstitut für Versicherung und Risikomanagement</p>
+              <p class="claimline">Wir verzahnen <em class="a">Lehre</em>, <em class="b">Forschung</em> und <em class="c">Praxis</em>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="zaehne">
+          <div class="zahn a">
+            <span class="k">Lehre</span>
+            <p>Bachelor und Master, klassisch oder dual. Unterrichtet von Menschen, die beide Seiten kennen — die Hochschule und den Betrieb.</p>
+          </div>
+          <div class="zahn b">
+            <span class="k">Forschung</span>
+            <p>Vier Forschungsstellen arbeiten an Fragen, die die Branche gerade umtreiben. Was dort entsteht, landet im selben Semester in der Vorlesung.</p>
+          </div>
+          <div class="zahn c">
+            <span class="k">Praxis</span>
+            <p>Ein Förderverein aus 170 Unternehmen bringt die Branche ins Haus: als Lehrbeauftragte, als Gastredner, als Arbeitgeber.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide" data-chapter="01 Einführung" data-title="Das Institut in Zahlen">
+      <div class="inner">
+        <h3 class="blockhead">Das ivwKöln in Zahlen</h3>
+        <p class="lead blocklead">Das Hochschulinstitut für Versicherung und Risikomanagement.</p>
+        <div class="statrow">
+          <div class="stat"><span class="v r">1.000</span><span class="l">Studierende<br>mit dualer Option</span></div>
+          <div class="stat"><span class="v">16</span><span class="l">Professorinnen<br>und Professoren</span></div>
+          <div class="stat"><span class="v o">50</span><span class="l">Lehrbeauftragte<br>aus der Praxis</span></div>
+          <div class="stat"><span class="v m">170</span><span class="l">Unternehmen<br>im Förderverein</span></div>
+          <div class="stat"><span class="v">4</span><span class="l">Forschungs-<br>stellen</span></div>
+          <div class="stat"><span class="v">2.000+</span><span class="l">Netzwerk-<br>kontakte</span></div>
+        </div>
+        <p class="hint" style="margin-top:1rem">Dazu: drei laufende Promotionen und der größte BWL-Alumni-Verein Deutschlands.</p>
+
+        <div class="nlrow">
+          <figure class="nlshot">
+            <img src="img/newsletter-ivw.png" alt="Titelseite des Newsletters des Instituts für Versicherungswesen vom Juni 2026, daneben ein QR-Code mit der Aufschrift Zur Anmeldung">
+          </figure>
+          <div class="nltext">
+            <span class="tag">Dranbleiben</span>
+            <b>Der Newsletter des Instituts</b>
+            <p>Zweimal im Jahr, kostenlos, dazu gelegentlich ein Hinweis auf eine Veranstaltung des Instituts. Abbestellen können Sie ihn jederzeit.</p>
+            <p class="scan">QR-Code scannen oder hier entlang:</p>
+            <a class="btn primary" href="https://www.th-koeln.de/wirtschafts-und-rechtswissenschaften/newsletter-abonnieren_55457.php">Newsletter abonnieren</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide" data-chapter="01 Einführung" data-title="Wer hier vorne steht">
+      <div class="inner">
+        <h3 class="blockhead">Wer hier vorne steht</h3>
+        <div class="g2">
+          <div class="card">
+            <span class="tag">Werdegang</span>
+            <div style="display:flex;align-items:center;gap:1.1rem">
+              <img src="img/portrait.png" alt="Porträt von Prof. Dr. Dominik Orbach" style="width:86px;height:86px;border-radius:50%;object-fit:cover;object-position:50% 12%;background:var(--paper-2);flex:none">
+              <h3 style="margin:0">Prof. Dr. Dominik Orbach</h3>
+            </div>
+            <ul>
+              <li>Studium der Volkswirtschaftslehre in Köln und Barcelona</li>
+              <li>Promotion in der Betriebswirtschaftslehre, Schwerpunkt Marketing</li>
+              <li>14 Jahre Versicherungsbranche bei AXA und SIGNAL IDUNA</li>
+              <li>Seit dem Wintersemester am ivwKöln</li>
+            </ul>
+            <p style="margin-top:.4rem">Diese Vorlesung kommt deshalb aus zwei Richtungen: Modelle aus dem Lehrbuch und Entscheidungen, die ich selbst zu verantworten hatte — inklusive der Fehlgriffe.</p>
+          </div>
+          <div class="card accent">
+            <span class="tag">Drei Projekte aus 14 Jahren Praxis</span>
+            <h3>Was BWL konkret bedeutet</h3>
+            <ul>
+              <li><b>2016 — App-Entwicklung.</b> Von der Idee bis in die Stores: Produktpolitik, Projektsteuerung, Vertrieb. Kapitel 3 des Semesters.</li>
+              <li><b>2018 — Firmen-Krankenversicherung verdoppelt.</b> Ein Vertriebsweg, der nicht lief, wurde neu aufgesetzt. Distributionspolitik in Reinform.</li>
+              <li><b>2020 — Rückstand in der Unfallversicherung eliminiert.</b> Prozesse, Personal, Organisation — die Kapitel 4 und 5.</li>
+              <li><b>2021 bis 2026 — Bestandskundenmarketing bei SIGNAL IDUNA aufgebaut.</b> Zehnfache Zahl an Kundenkontakten, zunehmend KI-gestützt. Kommunikationspolitik.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide" data-chapter="01 Einführung" data-title="Wer sitzt neben Ihnen?">
+      <div class="inner">
+        <div class="icebreak" id="ice">
+          <p class="eyebrow">Zwei Minuten · bitte mit der Person neben Ihnen</p>
+          <h3 style="font-size:clamp(1.6rem,3.2vw,2.4rem);color:#fff">Wer sitzt neben Ihnen?</h3>
+          <div class="q"><span id="iceQ">Name, Heimatort — und warum ausgerechnet Versicherungswesen?</span></div>
+          <div class="row">
+            <button class="btn primary" id="iceNext">Nächste Frage</button>
+            <span class="counter" id="iceCount">Frage 1 von 8</span>
+          </div>
+          <div class="printonly" id="icePrint"></div>
+          <p class="sub">Sie sitzen hier mit rund 180 Menschen, mit denen Sie die nächsten Jahre verbringen. Die Wahrscheinlichkeit, dass eine davon später Ihre Chefin, Ihr Geschäftspartner oder Ihre Mitgründerin ist, liegt deutlich über null.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= 02 ORGANISATION ================= -->
+<section id="organisation" class="alt">
+  <div class="wrap">
+
+    <div class="slide" data-chapter="02 Organisation" data-title="Wie dieses Semester läuft">
+      <div class="inner">
+        <div class="chaphead">
+          <div class="num">02</div>
+          <div>
+            <p class="eyebrow">Kapitel 02 · Organisation</p>
+            <h2>Wie dieses Semester läuft</h2>
+            <div class="meta"><span class="chip">Minute 20 bis 35</span><span class="chip n">Lernziele · Termine · Material</span></div>
+            <p class="lead">Vierzehn Termine, ein Projekt, eine Klausur. Was am Ende in Ihrem Kopf sein soll, steht hier — und zwar getrennt nach dem Was, dem Womit und dem Wozu.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide" data-chapter="02 Organisation" data-title="Learning Outcome">
+      <div class="inner">
+        <h3 class="blockhead">Learning Outcome</h3>
+        <div class="tabs" role="tablist" aria-label="Learning Outcome">
+          <button role="tab" id="t-was" aria-controls="p-was" aria-selected="true">Was</button>
+          <button role="tab" id="t-womit" aria-controls="p-womit" aria-selected="false">Womit</button>
+          <button role="tab" id="t-wozu" aria-controls="p-wozu" aria-selected="false">Wozu</button>
+        </div>
+
+        <div class="tabpanel" id="p-was" role="tabpanel" aria-labelledby="t-was" data-printlabel="Learning Outcome — WAS">
+          <div class="quote">Am Ende des Semesters können Sie betriebswirtschaftliche Fragestellungen aus den Bereichen Unternehmensziele, Marketing, Personal und Organisation eigenständig, methodisch fundiert und unter Rückgriff auf wissenschaftliche Arbeitsweisen analysieren — und erste Lösungsansätze entwickeln.<cite>Learning Outcome des Moduls</cite></div>
+        </div>
+
+        <div class="tabpanel" id="p-womit" role="tabpanel" aria-labelledby="t-womit" data-printlabel="Learning Outcome — WOMIT" hidden>
+          <div class="g3">
+            <div class="card"><span class="tag">Fundament</span><h3>Wissenschaftstheorie</h3><p>Methodisches Fundament für alles Weitere. Heute, Kapitel 03.</p></div>
+            <div class="card"><span class="tag">Grundbegriffe</span><h3>Unternehmen und Umwelt</h3><p>Ökonomische Grundbegriffe, das Unternehmen als System im Zusammenspiel mit Umwelt und Anspruchsgruppen.</p></div>
+            <div class="card"><span class="tag">Ziele</span><h3>Zielsysteme und Zielkonflikte</h3><p>Einschließlich ethischer und nachhaltigkeitsbezogener Konflikte — in Fallbeispielen und Gruppenarbeiten.</p></div>
+            <div class="card"><span class="tag">Marketing</span><h3>Die vier Instrumente</h3><p>Produkt-, Konditionen-, Distributions- und Kommunikationspolitik, vertieft an Praxisbeispielen aus der Versicherungswirtschaft.</p></div>
+            <div class="card"><span class="tag">Funktionen</span><h3>Personal und Organisation</h3><p>Grundfunktionen des Personalmanagements, Aufbau- und Ablauforganisation, aktuelle Organisationsformen.</p></div>
+            <div class="card"><span class="tag">Gegenwart</span><h3>Digitalisierung und KI</h3><p>Was verändert sich dadurch in jedem einzelnen Funktionsbereich? Diese Frage begleitet uns durchgehend.</p></div>
+          </div>
+        </div>
+
+        <div class="tabpanel" id="p-wozu" role="tabpanel" aria-labelledby="t-wozu" data-printlabel="Learning Outcome — WOZU" hidden>
+          <div class="g3">
+            <div class="card"><span class="tag">Kurzfristig</span><h3>Tragfähiges Grundverständnis</h3><p>Die vertiefenden Module bauen darauf auf. Ohne dieses Fundament wird es im dritten Semester unangenehm.</p></div>
+            <div class="card"><span class="tag">Mittelfristig</span><h3>Qualifizierte Schwerpunktwahl</h3><p>Sie können nur zwischen Dingen wählen, die Sie kennen. Dieses Semester zeigt Ihnen die Auswahl.</p></div>
+            <div class="card"><span class="tag">Langfristig</span><h3>Entscheidungen in der Praxis</h3><p>Unternehmerische Entscheidungen auf Grundlage eines wissenschaftlich fundierten, funktionsübergreifenden Verständnisses treffen.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide" data-chapter="02 Organisation" data-title="Semesterplan, erste Hälfte">
+      <div class="inner">
+        <p class="eyebrow" style="margin-bottom:.7rem">Semesterplan · Oktober bis Dezember</p>
+        <h3 class="blockhead">Vierzehn Donnerstage, die erste Hälfte</h3>
+        <div class="plan">
+          <div class="planrow here"><span class="n">01</span><span class="d">08.10.2026</span><span class="t">Einleitung</span><span class="badge">Heute</span></div>
+          <div class="planrow"><span class="n">02</span><span class="d">15.10.2026</span><span class="t">Grundlagen: Unternehmen und Umwelt</span><span></span></div>
+          <div class="planrow"><span class="n">03</span><span class="d">22.10.2026</span><span class="t">Ziele des Unternehmens</span><span></span></div>
+          <div class="planrow"><span class="n">04</span><span class="d">29.10.2026</span><span class="t">Marketing: Grundlagen</span><span></span></div>
+          <div class="planrow"><span class="n">05</span><span class="d">05.11.2026</span><span class="t">Marketing: Produktpolitik</span><span></span></div>
+          <div class="planrow"><span class="n">06</span><span class="d">12.11.2026</span><span class="t">Marketing: Konditionenpolitik</span><span></span></div>
+          <div class="planrow free"><span class="n">—</span><span class="d">19.11.2026</span><span class="t">Projektwoche, keine Vorlesung</span><span class="badge g">KW 47</span></div>
+          <div class="planrow"><span class="n">07</span><span class="d">26.11.2026</span><span class="t">Gruppenarbeit Unternehmensanalyse</span><span class="badge g">Projekt</span></div>
+          <div class="planrow"><span class="n">08</span><span class="d">03.12.2026</span><span class="t">Gruppenarbeit Unternehmensanalyse</span><span class="badge g">Projekt</span></div>
+          <div class="planrow"><span class="n">09</span><span class="d">10.12.2026</span><span class="t">Finale der Unternehmensanalyse · Gastvortrag</span><span class="badge">Alle vor Ort</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide" data-chapter="02 Organisation" data-title="Semesterplan, zweite Hälfte">
+      <div class="inner">
+        <p class="eyebrow" style="margin-bottom:.7rem">Semesterplan · Dezember bis Januar</p>
+        <h3 class="blockhead">Und die zweite Hälfte</h3>
+        <div class="plan">
+          <div class="planrow"><span class="n">10</span><span class="d">17.12.2026</span><span class="t">Marketing: Distributionspolitik</span><span></span></div>
+          <div class="planrow free"><span class="n">—</span><span class="d">24.12. / 31.12.</span><span class="t">Weihnachtspause</span><span class="badge g">frei</span></div>
+          <div class="planrow"><span class="n">11</span><span class="d">07.01.2027</span><span class="t">Marketing: Kommunikationspolitik</span><span></span></div>
+          <div class="planrow"><span class="n">12</span><span class="d">14.01.2027</span><span class="t">Personal</span><span></span></div>
+          <div class="planrow"><span class="n">13</span><span class="d">21.01.2027</span><span class="t">Organisation</span><span></span></div>
+          <div class="planrow"><span class="n">14</span><span class="d">28.01.2027</span><span class="t">Zusammenfassung</span><span class="badge">Letzter Termin</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide" data-chapter="02 Organisation" data-title="Format und Leistungen">
+      <div class="inner">
+        <h3 class="blockhead">Format und Leistungen</h3>
+        <div class="g2">
+          <div class="card">
+            <span class="tag">Format</span>
+            <h3>Präsenz und Zoom</h3>
+            <ul>
+              <li><b>Hörsaal 284</b>, donnerstags 9:45 bis 11:15 Uhr</li>
+              <li><b>Zoom</b>, donnerstags 13:30 bis 15:00 Uhr — identische Inhalte</li>
+              <li><b>10.12.2026:</b> Anwesenheitswoche, alle vor Ort</li>
+              <li><b>Sprechstunde</b> nach Buchung: <a href="https://scheduler.zoom.us/dominik-orbach">scheduler.zoom.us/dominik-orbach</a></li>
+            </ul>
+            <img src="img/campus-wide.jpg" alt="Campus Südstadt der TH Köln" loading="lazy" style="border-radius:10px;aspect-ratio:16/7;object-fit:cover;margin-top:.4rem">
+          </div>
+          <div class="card accent">
+            <span class="tag">Leistungen</span>
+            <h3>Was zählt</h3>
+            <ul>
+              <li>Das Modul teilen sich <b>Professor Materne und ich</b> mit unterschiedlichen Schwerpunkten.</li>
+              <li>Für meinen Teil zählen <b>Klausur und Gruppenarbeit je zur Hälfte</b>.</li>
+              <li><b>Eine Klausur</b> am Ende des Moduls. Dafür üben wir mit <b>Transferaufgaben</b> zwischen den Vorlesungen, im Zuschnitt echter Klausuraufgaben.</li>
+              <li><b>Gruppenprojekt „Unternehmensanalyse“</b> mit Präsentation am 10. Dezember. Mehr dazu in Kapitel 04.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide" data-chapter="02 Organisation" data-title="Einordnung im Lehrbuch">
+      <div class="inner">
+        <p class="eyebrow" style="margin-bottom:.7rem">Einordnung</p>
+        <h3 class="blockhead">Wo diese Vorlesung im Lehrbuch steht</h3>
+        <p class="lead blocklead">Thommen und Achleitner gliedern die Allgemeine BWL in zehn Teile. Vier davon sind dieses Semester, der Rest verteilt sich über Ihr Studium.</p>
+        <div class="g4">
+          <div class="card"><span class="tag">Teil 1</span><h3 style="font-size:1.08rem">BWL-Grundlagen</h3><p>BWL 1 und BWL 2</p></div>
+          <div class="card"><span class="tag">Teil 2</span><h3 style="font-size:1.08rem">Marketing</h3><p>BWL 1 — fünf Termine</p></div>
+          <div class="card"><span class="tag">Teil 8</span><h3 style="font-size:1.08rem">Personal</h3><p>BWL 1</p></div>
+          <div class="card"><span class="tag">Teil 9</span><h3 style="font-size:1.08rem">Organisation</h3><p>BWL 1</p></div>
+          <div class="card"><span class="tag">Teil 6 und 7</span><h3 style="font-size:1.08rem">Finanzierung, Investition</h3><p>BWL 2</p></div>
+          <div class="card"><span class="tag">Teil 5</span><h3 style="font-size:1.08rem">Rechnungswesen</h3><p>Eigenes Modul</p></div>
+          <div class="card"><span class="tag">Teil 10</span><h3 style="font-size:1.08rem">Führung und Management</h3><p>4. Semester</p></div>
+          <div class="card"><span class="tag">Teil 3 und 4</span><h3 style="font-size:1.08rem">Material, Produktion</h3><p>Hier nicht behandelt</p></div>
+        </div>
+        <div class="note v" style="margin-top:1.4rem">
+          <span class="tag">Anschlussmodul</span>
+          <p>Die Versicherungsbetriebslehre im kommenden Sommersemester baut direkt auf dieser Veranstaltung auf.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide" data-chapter="02 Organisation" data-title="Literatur">
+      <div class="inner">
+        <p class="eyebrow" style="margin-bottom:.7rem">Literatur</p>
+        <h3 class="blockhead">Vier Bücherempfehlungen</h3>
+        <div class="lit">
+          <div class="litem"><span class="k">Basis</span><p><b>Thommen, J.-P.; Achleitner, A.-K.:</b> Allgemeine Betriebswirtschaftslehre. Umfassende Einführung aus managementtheoretischer Sicht. 10. Auflage, Wiesbaden 2023. <i>Anschaffung empfohlen.</i></p></div>
+          <div class="litem"><span class="k">Optional</span><p><b>Thommen; Achleitner; Poech:</b> Arbeitsbuch — Repetitionsfragen, Aufgaben, Lösungen. 9. Auflage, Wiesbaden 2022.</p></div>
+          <div class="litem"><span class="k">Studieren</span><p><b>Spoun, S.; Domnik, D. B.:</b> Erfolgreich studieren. München 2004. ISBN 3-8273-7129-5.</p></div>
+          <div class="litem"><span class="k">Methodik</span><p><b>Stickel-Wolf, S.; Wolf, J.:</b> Wissenschaftliches Arbeiten und Lerntechniken. 10. Auflage 2022. ISBN 978-3658371340.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide" data-chapter="02 Organisation" data-title="Miro-Board">
+      <div class="inner">
+        <p class="eyebrow" style="margin-bottom:.7rem">Arbeitsfläche</p>
+        <h3 class="blockhead">Miro — bitte heute einloggen</h3>
+        <p class="lead blocklead">Wir arbeiten das ganze Semester auf einem gemeinsamen Board. Probieren Sie jetzt aus, welcher Zugang bei Ihnen funktioniert. Drei Wege führen hinein.</p>
+        <div class="g3">
+          <div class="qr">
+            <img src="img/qr-miro.png" alt="QR-Code zum Miro-Board der Veranstaltung">
+            <div>
+              <b>Option 1 · Direkter Link</b>
+              <span><a href="https://miro.com/app/board/uXjVHqb_ybg=/">miro.com/app/board/uXjVHqb_ybg=</a></span>
+            </div>
+          </div>
+          <div class="card">
+            <span class="tag">Option 2</span>
+            <h3>Team-Mitglied werden</h3>
+            <p>Über den Onboarding-Link, den ich im Hörsaal einblende und in ILU hinterlege. Damit gehört Ihnen das Board dauerhaft mit.</p>
+          </div>
+          <div class="card">
+            <span class="tag">Option 3</span>
+            <h3>Einladung per Mail</h3>
+            <p>Wenn nichts davon klappt: eine Mail an <a href="mailto:dominik.orbach@th-koeln.de">dominik.orbach@th-koeln.de</a>, dann lade ich Sie persönlich ein.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= 03 WISSENSCHAFTSTHEORIE ================= -->
+<section id="wissenschaft">
+  <div class="wrap">
+
+    <div class="slide" data-chapter="03 Wissenschaftstheorie" data-title="Woher wissen Sie, dass das stimmt?">
+      <div class="inner">
+        <div class="chaphead">
+          <div class="num">03</div>
+          <div>
+            <p class="eyebrow">Kapitel 03 · Wissenschaftstheorie</p>
+            <h2>Woher wissen Sie, dass das stimmt?</h2>
+            <div class="meta"><span class="chip">Minute 35 bis 68</span><span class="chip n">Kernstück dieser Sitzung</span></div>
+            <p class="lead">Sie können wissenschaftliche Aussagen und Vorgehensweisen kritisch einordnen und den kritischen Rationalismus als Grundposition wissenschaftlichen Arbeitens erläutern. Dafür brauchen wir: die Grundlagen, die neun Arbeitsschritte des Forschens und ein Praxisbeispiel.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide" data-chapter="03 Wissenschaftstheorie" data-title="Was ist Wissenschaftstheorie?">
+      <div class="inner">
+        <h3 class="blockhead">Fundament und Grundanforderung</h3>
+        <div class="g2">
+          <div class="card">
+            <span class="tag">Definition</span>
+            <h3>Wissenschaftstheorie ist das philosophische Fundament der Wissenschaft</h3>
+            <p>Sie sucht Antworten auf Fragen, die unterhalb jedes Fachinhalts liegen:</p>
+            <ul>
+              <li>Wie funktioniert Forschung überhaupt?</li>
+              <li>Wie komme ich von einer Beobachtung zu wissenschaftlicher Erkenntnis?</li>
+              <li>Wie baue ich Wissen auf — und wie überprüfe ich es?</li>
+              <li>Gibt es überhaupt „wahre“ Erkenntnisse?</li>
+              <li>Soll Wissenschaft wertend oder wertneutral sein?</li>
+            </ul>
+          </div>
+          <div class="card accent">
+            <span class="tag">Die Grundanforderung</span>
+            <h3>Intersubjektiv zugänglich und überprüfbar</h3>
+            <p>Das ist die eine Bedingung, hinter die keine Wissenschaft zurückfallen darf:</p>
+            <ul>
+              <li>Die zugrundeliegende Methode muss bekannt und nachvollziehbar sein.</li>
+              <li>Damit grenzt sich Wissenschaft ab gegen Intuition, religiöse Offenbarung und andere Formen nicht-wissenschaftlichen Erkenntnisgewinns.</li>
+              <li>Über die <i>richtige</i> Methode wird allerdings seit Jahrhunderten heftig gestritten — daher die verschiedenen wissenschaftstheoretischen Grundpositionen.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide" data-chapter="03 Wissenschaftstheorie" data-title="Was ist Forschung?">
+      <div class="inner">
+        <div class="quote narrow" style="margin-bottom:clamp(2rem,4vw,3rem)">Forschung ist die Gesamtheit der methodisch-systematischen und schöpferisch-geistigen Bemühungen zur Erlangung neuer, nachprüfbarer Erkenntnisse.<cite>Beobachten, experimentieren, messen, ableiten — und: analysieren, interpretieren, verstehen</cite></div>
+        <div class="g3">
+          <div class="card">
+            <span class="tag">Bild</span>
+            <h3>Wissen als Berg</h3>
+            <p>Generationen von Forschenden haben ihn zusammengetragen. Wer forscht, nutzt den Berg als Rohstoff, verarbeitet und rekombiniert ihn — und trägt selbst wieder dazu bei. Ihre Hausarbeit ist eine Handvoll Geröll. Aber sie ist Ihre.</p>
+          </div>
+          <div class="card">
+            <span class="tag">Erkenntnisstreben 1</span>
+            <h3>Wie? Beschreibende Forschung</h3>
+            <p>Beschreibung und Interpretation machen komplexe Sachverhalte greifbar: Bevölkerungsstatistik, Konjunkturbarometer, Fallstudien in Unternehmen.</p>
+            <p style="color:var(--ink-3);font-size:.94rem"><b>Strittig:</b> Ist das schon Forschung — oder nur deren Vorstufe?</p>
+          </div>
+          <div class="card">
+            <span class="tag">Erkenntnisstreben 2</span>
+            <h3>Warum? Erklärende Forschung</h3>
+            <p>Sie baut auf der Beschreibung auf und sucht Ursachen und Begründungen.</p>
+            <p style="color:var(--ink-3);font-size:.94rem"><b>Merksatz:</b> Beschreiben ohne Erklären ist möglich. Erklären ohne Beschreiben nicht.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide" data-chapter="03 Wissenschaftstheorie" data-title="Erklären und begründen">
+      <div class="inner">
+        <h3 class="blockhead">Zwei Richtungen der Forschung</h3>
+        <div class="g2">
+          <div class="card">
+            <span class="tag">Erklärende Forschung</span>
+            <h3>Ursache und Wirkung</h3>
+            <ul>
+              <li><b>Herkunft:</b> Naturwissenschaften, Psychologie, VWL und BWL</li>
+              <li><b>Gegenstand:</b> kausale Zusammenhänge</li>
+              <li><b>Leitfragen:</b> Wie wirkt X? Was passiert, wenn ich Y tue?</li>
+              <li><b>Ziel:</b> Problemlösungen</li>
+            </ul>
+          </div>
+          <div class="card">
+            <span class="tag">Begründende Forschung</span>
+            <h3>Sinn und Legitimität</h3>
+            <ul>
+              <li><b>Herkunft:</b> Teile der Sozialwissenschaften, Ethik, Theologie</li>
+              <li><b>Gegenstand:</b> Sinnzusammenhänge</li>
+              <li><b>Ausgangspunkt:</b> ein Postulat, das als richtig angesehen wird</li>
+              <li><b>Ziel:</b> normative Orientierung, Verantwortbarkeit, Lebensdienlichkeit</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide eng" data-chapter="03 Wissenschaftstheorie" data-title="Neun Arbeitsschritte">
+      <div class="inner">
+        <p class="eyebrow" style="margin-bottom:.7rem">Interaktiv · bitte mitklicken</p>
+        <h3 class="blockhead">Die neun Arbeitsschritte des Forschens</h3>
+        <p class="lead blocklead">Klicken Sie einen Schritt an. Darunter sehen Sie, was er bedeutet — und wie er im Praxisbeispiel „Klimarisiken und Versicherer“ konkret aussieht.</p>
+        <div class="steps" id="steps"></div>
+        <div class="stepout" id="stepout" aria-live="polite">
+          <span class="k">Schritt auswählen</span>
+          <h4>Neun Schritte, ein Beispiel</h4>
+          <p>Wachsende Klimarisiken mit gravierenden Folgen für Lebensraum, Gesundheit, Wirtschaft, Migration und Sicherheit — für Versicherer ist das keine akademische Frage, sondern eine Kalkulationsfrage. Wir gehen das Beispiel Schritt für Schritt durch.</p>
+        </div>
+        <div class="printonly" id="stepsPrint"></div>
+        <p class="hint" style="margin-top:1rem">Hausaufgabe bis zum 15. Oktober: dieselben neun Schritte für das Thema Künstliche Intelligenz. Die vollständige Aufgabe steht am Ende dieser Sitzung.</p>
+      </div>
+    </div>
+
+    <div class="slide" data-chapter="03 Wissenschaftstheorie" data-title="Fünf Fachbegriffe">
+      <div class="inner">
+        <p class="eyebrow" style="margin-bottom:.7rem">Interaktiv · fünf Begriffe</p>
+        <h3 class="blockhead">Definition, Axiom, Postulat, Hypothese, Theorie</h3>
+        <p class="lead blocklead">Fünf Begriffe, die in Ihren Arbeiten ständig vorkommen und ständig verwechselt werden. Auf der nächsten Folie ordnen Sie sie zu.</p>
+
+        <div class="g2" style="margin-bottom:1.6rem">
+          <div class="card"><span class="tag">Zur Erinnerung</span>
+            <ul>
+              <li><b>Definition:</b> genaue Bestimmung eines Begriffs durch Erklärung seiner Inhalte. Eine Festlegung.</li>
+              <li><b>Axiom:</b> nicht abgeleiteter, als richtig unterstellter Grundsatz.</li>
+              <li><b>Postulat:</b> unbedingte, meist sittliche Forderung.</li>
+            </ul>
+          </div>
+          <div class="card"><span class="tag">&nbsp;</span>
+            <ul>
+              <li><b>Hypothese:</b> zunächst unbewiesene Annahme über Gesetzlichkeiten oder Tatsachen, mit dem Ziel, sie zu verifizieren oder, nach Popper, zu falsifizieren.</li>
+              <li><b>Theorie:</b> System wissenschaftlich begründeter, logisch widerspruchsfreier Aussagen zur Erklärung bestimmter Tatsachen und der ihnen zugrunde liegenden Gesetzmäßigkeiten.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="slide" data-chapter="03 Wissenschaftstheorie" data-title="Begriffe zuordnen">
+      <div class="inner">
+        <p class="eyebrow" style="margin-bottom:.7rem">Interaktiv · Zuordnung</p>
+        <h3 class="blockhead">Fünf Aussagen zur Nutzenmaximierung</h3>
+        <p class="lead blocklead">Welche Aussage ist eine Definition, welche ein Axiom, ein Postulat, eine Hypothese, eine Theorie? Genau eine Zuordnung pro Begriff.</p>
+        <div class="quiz" id="quiz"></div>
+        <div class="quizbar" style="margin-top:1.2rem">
+          <button class="btn primary" id="quizCheck">Auswerten</button>
+          <button class="btn" id="quizReset">Neu</button>
+          <span class="score" id="quizScore">0 von 5 zugeordnet</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide" data-chapter="03 Wissenschaftstheorie" data-title="Wo gute Quellen liegen">
+      <div class="inner">
+        <p class="eyebrow" style="margin-bottom:.7rem">Recherche</p>
+        <h3 class="blockhead">Wo gute Quellen liegen</h3>
+        <p class="lead blocklead">Bevor wir Quellen bewerten: Wo finden Sie überhaupt welche? Zwei Adressen, an die im ersten Semester kaum jemand denkt.</p>
+        <div class="g2">
+          <div class="qcard">
+            <a class="qshot" href="https://www.th-koeln.de/hochschulbibliothek/">
+              <img src="img/bibliothek-thk.jpg" alt="Startseite der Hochschulbibliothek der TH Köln mit Bildern aus den Lesesaalbereichen">
+            </a>
+            <div class="qtext">
+              <span class="tag">Zuerst hierhin</span>
+              <h3>Die Hochschulbibliothek</h3>
+              <p>Was im offenen Netz hinter einer Bezahlschranke liegt, ist für Sie oft längst bezahlt. Mit Hochschul-Login auch von zu Hause.</p>
+              <ul>
+                <li><b>Katalog PLUS</b> — Bestände und lizenzierte Volltexte in einer Suche.</li>
+                <li><b>Datenbanken</b> — der fachliche Einstieg statt der Websuche.</li>
+                <li><b>Fernleihe</b> — was Köln nicht hat, kommt von anderswo.</li>
+                <li><b>Kai</b> — der KI-Recherche-Assistent der Bibliothek, mit Quellen.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="qcard">
+            <figure class="qshot cover">
+              <img src="img/hbr-cover.jpg" alt="Titelseite der Harvard Business Review, Ausgabe Januar bis Februar 2026">
+            </figure>
+            <div class="qtext">
+              <span class="tag o">Mit Augenmaß</span>
+              <h3>Harvard Business Review</h3>
+              <p>Managementzeitschrift aus dem Verlag der Harvard Business School: redaktionell betreut, fachlich solide — aber <b>kein begutachtetes Journal</b>.</p>
+              <ul>
+                <li><b>Stark</b> bei Konzepten, Fallbeispielen und Branchendebatten.</li>
+                <li><b>Schwach</b> als Beleg für eine empirische Behauptung — dafür brauchen Sie Peer Review.</li>
+                <li><b>Praktisch</b>: über die Bibliothek zugänglich, statt einzeln gekauft.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide eng" data-chapter="03 Wissenschaftstheorie" data-title="Quellenkritik">
+      <div class="inner">
+        <p class="eyebrow" style="margin-bottom:.7rem">Interaktiv · Quellenkritik</p>
+        <h3 class="blockhead">Würden Sie das zitieren?</h3>
+        <p class="lead blocklead">Diese sechs Quellen habe ich tatsächlich verwendet, um die fünf Aussagen oben zu belegen. Entscheiden Sie für jede: in einer Hausarbeit zitierfähig, mit Vorbehalt nutzbar, oder besser nicht?</p>
+        <div class="srcgrid" id="srcgrid"></div>
+        <div class="note" style="margin-top:1.4rem">
+          <span class="tag">Der Punkt dahinter</span>
+          <p>Keine dieser Quellen ist „falsch“. Sie unterscheiden sich darin, ob ein Prüfverfahren dahintersteht, ob die Autorschaft nachvollziehbar ist und ob die Aussage anderswo abgesichert werden kann. Genau das meint intersubjektive Überprüfbarkeit — und genau danach schaue ich in Ihren Arbeiten.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide" data-chapter="03 Wissenschaftstheorie" data-title="Ich oder KI?">
+      <div class="inner">
+        <h3 class="blockhead">Was geht Sie das an?</h3>
+        <div class="g2">
+          <div class="card">
+            <span class="tag">Metaebene</span>
+            <h3>Vier Gründe</h3>
+            <ul>
+              <li>Verständnis dessen, worauf das gelernte Wissen überhaupt basiert</li>
+              <li>Offenheit und Kritikfähigkeit: das Wissen, dass es andere Methoden und Denkansätze gibt</li>
+              <li>Grundverständnis für das eigene Vorgehen in eigenen Arbeiten</li>
+              <li>Selbstverständnis als angehende Akademikerin, als angehender Akademiker</li>
+            </ul>
+          </div>
+          <div class="card accent">
+            <span class="tag">Die unvermeidliche Frage</span>
+            <h3>Ich oder KI?</h3>
+            <ul>
+              <li>KI verändert unser Leben, und sie verändert das Lernen.</li>
+              <li>An der TH Köln darf KI eingesetzt werden — deklariert und reflektiert.</li>
+              <li>KI ersetzt nicht das eigene Denken, das Erfahrungmachen und das Entscheiden.</li>
+              <li>Und, unbequem: KI kann dumm machen. Wer sich das Zwischenergebnis schenkt, schenkt sich das Lernen.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide" data-chapter="03 Wissenschaftstheorie" data-title="Konsequenz für Ihr Studium">
+      <div class="inner">
+        <p class="eyebrow" style="margin-bottom:.7rem">Konsequenz</p>
+        <h3 class="blockhead">Was das für Ihr Studium bedeutet</h3>
+        <div class="g4">
+          <div class="card"><h3 style="font-size:1.08rem">Aus Fehlern lernen</h3><p>Erkenntnisfortschritt entsteht durch Irrtum. Erweitern Sie den Wissensberg der Gesellschaft und nutzen Sie wissenschaftlich fundierte Quellen.</p></div>
+          <div class="card"><h3 style="font-size:1.08rem">Offene Einstellung</h3><p>Die Bereitschaft, die Argumente anderer zu hören und ernsthaft zu prüfen — auch die unbequemen.</p></div>
+          <div class="card"><h3 style="font-size:1.08rem">Freiheit und Pluralität</h3><p>Beides ist keine Selbstverständlichkeit. Schützen und fordern Sie es.</p></div>
+          <div class="card"><h3 style="font-size:1.08rem">Keine Autoritätsansprüche</h3><p>Auch nicht meine. Dazu gehört die Forderung nach Demokratie als Institution, in der Herrschende zur Rechenschaft gezogen und abgewählt werden können.</p></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= 04 PROJEKT ================= -->
+<section id="projekt" class="alt">
+  <div class="wrap">
+
+    <div class="slide" data-chapter="04 Projekt" data-title="Ihre Unternehmensanalyse">
+      <div class="inner">
+        <div class="chaphead">
+          <div class="num">04</div>
+          <div>
+            <p class="eyebrow">Kapitel 04 · Projekt</p>
+            <h2>Ihre Unternehmensanalyse</h2>
+            <div class="meta"><span class="chip">Minute 68 bis 80</span><span class="chip o">50 Prozent der Note</span></div>
+            <p class="lead">Ab der kommenden Woche arbeiten Sie in Gruppen an einem echten Unternehmen. Am 10. Dezember stellen Sie Ihr Ergebnis vor — vor Ort, alle zusammen. Details folgen nächste Woche, hier ist der Rahmen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide" data-chapter="04 Projekt" data-title="Der Auftrag">
+      <div class="inner">
+        <h3 class="blockhead">Der Auftrag</h3>
+        <p class="lead blocklead">Suchen Sie sich in der Gruppe ein Unternehmen aus den Top 100 Brands des Interbrand-Rankings aus. Analysieren Sie es mit den Werkzeugen, die wir im Semester erarbeiten, und präsentieren Sie das Ergebnis so, dass die anderen etwas davon haben. Zwei Vorlesungstermine sind reine Arbeitszeit, ich bin dabei ansprechbar.</p>
+        <p class="hint" style="margin-bottom:1.2rem">Das Ranking finden Sie unter <a href="https://interbrand.com/best-global-brands/">interbrand.com/best-global-brands</a> — maßgeblich ist die zuletzt veröffentlichte Ausgabe.</p>
+        <ol class="outline">
+          <li><span class="n">01</span><div><b>Gründung und Gründerfiguren</b><span class="d">Wer hat das Unternehmen gegründet, mit welcher Idee, welchem Kapital?</span></div></li>
+          <li><span class="n">02</span><div><b>Unternehmensgeschichte</b><span class="d">Die Wendepunkte, die das heutige Geschäftsmodell erklären. Nicht jede Jahreszahl.</span></div></li>
+          <li><span class="n">03</span><div><b>Marketing-Mix</b><span class="d">Die vier Instrumente: Produkt, Konditionen, Distribution, Kommunikation.</span></div></li>
+          <li><span class="n">04</span><div><b>Strategische Positionierung</b><span class="d">Mindestens ein Modell sauber angewendet — nicht fünf oberflächlich.</span></div></li>
+          <li><span class="n">05</span><div><b>Organisation und Personal</b><span class="d">Aufbau, Führung, Belegschaft. Woher stammen Ihre Zahlen?</span></div></li>
+          <li><span class="n">06</span><div><b>Zahlen</b><span class="d">Umsatz, Ergebnis, Entwicklung. Mit Angabe von Geschäftsjahr und Quelle.</span></div></li>
+          <li><span class="n">07</span><div><b>Ihr Urteil</b><span class="d">Eine begründete Einschätzung. Argumente, keine Meinung.</span></div></li>
+          <li><span class="n">08</span><div><b>Quellenverzeichnis</b><span class="d">Vollständig, mit Abrufdatum. Siehe Kapitel 03 von heute.</span></div></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="slide" data-chapter="04 Projekt" data-title="Bis zum nächsten Termin">
+      <div class="inner">
+        <p class="eyebrow" style="margin-bottom:.7rem">Ihr Auftrag bis zum 15. Oktober</p>
+        <h3 class="blockhead">Finden Sie Ihr Team</h3>
+        <p class="lead blocklead">Drei Schritte, mehr ist es diese Woche nicht. Ausführlich besprechen wir das Projekt in der kommenden Vorlesung.</p>
+        <div class="g3">
+          <div class="card accent">
+            <span class="tag">Schritt 1</span>
+            <h3>Fünf Personen pro Team</h3>
+            <p>Bilden Sie Gruppen zu je fünf Personen. Achten Sie dabei auf eine Frage, die wichtiger ist, als sie klingt: Wollen Sie <b>vor Ort</b> oder <b>digital</b> arbeiten?</p>
+            <p>Zwei Vorlesungseinheiten stelle ich als Arbeitszeit zur Verfügung. Wer vor Ort arbeiten möchte, sollte in einer Gruppe sein, die an diesen Terminen auch vor Ort ist.</p>
+          </div>
+          <div class="card">
+            <span class="tag">Schritt 2</span>
+            <h3>Ein Unternehmen wählen</h3>
+            <p>Suchen Sie sich ein Unternehmen aus den <b>Top 100 Brands des Interbrand-Rankings</b> aus.</p>
+            <p style="word-break:break-all"><a href="https://interbrand.com/best-global-brands/">interbrand.com/best-global-brands</a></p>
+            <p style="color:var(--ink-3);font-size:.95rem">Wer zuerst kommt, mahlt zuerst: Jedes Unternehmen wird nur einmal vergeben.</p>
+          </div>
+          <div class="card">
+            <span class="tag">Schritt 3</span>
+            <h3>Auf dem Miro-Board eintragen</h3>
+            <p><b>Mit Gruppe:</b> ein Post-it mit den Vor- und Nachnamen aller fünf Personen und dem gewählten Unternehmen.</p>
+            <p><b>Ohne Gruppe:</b> ein Post-it mit Ihrem Vor- und Nachnamen — und schieben Sie es in die Spalte <b>vor Ort</b> oder <b>digital</b>. So finden Sie zueinander.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="slide" data-chapter="04 Projekt" data-title="Der Ablauf des Projekts">
+      <div class="inner">
+        <p class="eyebrow" style="margin-bottom:.7rem">Die Rahmenparameter</p>
+        <h3 class="blockhead">Der grobe Ablauf</h3>
+        <p class="lead blocklead">Fünf Termine, die Sie sich notieren sollten. Zwei davon sind Arbeitszeit, die ich Ihnen zur Verfügung stelle. Nach der Abgabe bewerten Sie einander: Jede und jeder begutachtet fünf zufällig zugeloste Projekte, die fünf bestbewerteten Arbeiten präsentieren im Finale.</p>
+        <div class="plan">
+          <div class="planrow"><span class="n">26.11.</span><span class="d">Donnerstag</span><span class="t">Gruppenarbeit in der Vorlesung</span><span class="badge g">Arbeitszeit</span></div>
+          <div class="planrow"><span class="n">03.12.</span><span class="d">Donnerstag</span><span class="t">Gruppenarbeit in der Vorlesung</span><span class="badge g">Arbeitszeit</span></div>
+          <div class="planrow here"><span class="n">04.12.</span><span class="d">Freitag</span><span class="t">Abgabe der Projektarbeit, 23:59 Uhr</span><span class="badge">Deadline</span></div>
+          <div class="planrow"><span class="n">09.12.</span><span class="d">Mittwoch</span><span class="t">Bewertung der anderen Projekte, bis 12:00 Uhr mittags</span><span class="badge">Peer Review</span></div>
+          <div class="planrow"><span class="n">10.12.</span><span class="d">Donnerstag</span><span class="t">Finale: die fünf bestbewerteten Gruppen präsentieren</span><span class="badge">Alle vor Ort</span></div>
+        </div>
+        <p class="hint" style="margin-top:1rem">Das sind die Rahmenparameter. Für die Details, die Bewertungskriterien und Ihre Fragen nehmen wir uns in der kommenden Vorlesung ausführlich Zeit.</p>
+      </div>
+    </div>
+
+    <div class="slide" data-chapter="04 Projekt" data-title="Referenzbeispiel Nike">
+      <div class="inner">
+        <p class="eyebrow" style="margin-bottom:.7rem">Referenzbeispiel</p>
+        <h3 class="blockhead">So könnte das aussehen: Nike</h3>
+        <p class="lead blocklead">Ich habe die Aufgabe selbst gemacht. Das Ergebnis ist eine Unternehmensanalyse von Nike — vom Kofferraum-Verkauf 1964 bis zum Geschäftsjahr 2026, mit Marketing-Mix, fünf Strategiemodellen, Organigramm, Zahlen und einem begründeten Investment-Urteil. Wir gehen sie gleich gemeinsam durch.</p>
+        <div class="g3" style="margin-bottom:1.6rem">
+          <div class="card"><span class="tag">Woran Sie sich orientieren können</span><h3>Belegte Zahlen</h3><p>Jede Zahl trägt eine Quellenziffer, jede Quelle ein Abrufdatum. Geschäftsbericht vor Presseartikel, Presseartikel vor Blog.</p></div>
+          <div class="card"><span class="tag">Woran Sie sich orientieren können</span><h3>Modelle mit Aussage</h3><p>Porter, Ansoff, Keller, SWOT, Five Forces — jedes Modell beantwortet eine andere Frage. Wer ein Modell nur abbildet, hat es nicht angewendet.</p></div>
+          <div class="card"><span class="tag">Woran Sie sich orientieren können</span><h3>Ein Urteil am Ende</h3><p>Die Analyse mündet in eine begründete Einschätzung — mit den Argumenten dagegen daneben.</p></div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:.8rem;align-items:center">
+          <a class="btn primary" href="https://professororbach.github.io/nike/">Nike-Analyse öffnen</a>
+          <span class="hint">professororbach.github.io/nike — wird im Hörsaal gezeigt und zusätzlich in ILU verlinkt.</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= 05 FEEDBACK ================= -->
+<section id="feedback">
+  <div class="wrap">
+
+    <div class="slide" data-chapter="05 Feedback" data-title="Und, wie fanden Sie die Vorlesung?">
+      <div class="inner">
+        <div class="chaphead">
+          <div class="num">05</div>
+          <div>
+            <p class="eyebrow">Kapitel 05 · Feedback</p>
+            <h2>Und, wie fanden Sie die Vorlesung?</h2>
+            <div class="meta"><span class="chip">Minute 80 bis 90</span><span class="chip v">Net Promoter Score</span></div>
+            <p class="lead">Zum Abschluss messen wir diese Vorlesung mit derselben Kennzahl, mit der ich jahrelang Kundenkontakte gemessen habe. Sie lernen die Methode kennen und wenden sie gleich auf diese Vorlesung an.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide" data-chapter="05 Feedback" data-title="Die Methode NPS">
+      <div class="inner">
+        <h3 class="blockhead">Eine Frage, ein Wert, vergleichbar</h3>
+        <div class="g2">
+          <div class="card">
+            <span class="tag">Die Methode</span>
+            <h3>Warum ausgerechnet eine einzige Frage</h3>
+            <p>Der Net Promoter Score ist seit Jahren im Einsatz, um Kundenkontaktpunkte zu messen und zu optimieren. Sein Reiz liegt in der Standardisierung: eine Frage, eine Skala, eine Rechenvorschrift. Das schafft Vergleichbarkeit über Kontaktpunkte, Zeiträume und Wettbewerber hinweg.</p>
+            <p style="color:var(--ink-3);font-size:.95rem"><b>Standardfrage:</b> Wie wahrscheinlich ist es, dass Sie den Kundenservice einer Freundin oder einem Freund weiterempfehlen?</p>
+          </div>
+          <div class="card accent">
+            <span class="tag">Die Rechnung</span>
+            <h3>Promotoren minus Detraktoren</h3>
+            <ul>
+              <li><b>9 bis 10 Promotoren:</b> empfehlen aktiv weiter</li>
+              <li><b>7 bis 8 Passive:</b> zählen überhaupt nicht mit</li>
+              <li><b>1 bis 6 Detraktoren:</b> raten ab</li>
+            </ul>
+            <p style="margin-top:.5rem">NPS = Anteil Promotoren minus Anteil Detraktoren, in Prozentpunkten. Der Wert liegt zwischen minus 100 und plus 100. Kundenzufriedenheit wird damit zu einem strategischen Ziel, das messbar und vergleichbar ist, etwa als Position unter den besten fünf im Markt.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide" data-chapter="05 Feedback" data-title="NPS zum Mitmachen">
+      <div class="inner">
+        <h3 class="blockhead">Beispiel</h3>
+        <div class="g2" style="align-items:start">
+          <div class="card">
+            <span class="tag">Interaktiv · Ihre Stimme</span>
+            <h3>Wie wahrscheinlich ist es, dass Sie die Mensa der TH Köln weiterempfehlen?</h3>
+            <div class="npsscale" id="npsScale"></div>
+            <div class="npslabels"><span>1 · sehr unwahrscheinlich</span><span>sehr wahrscheinlich · 10</span></div>
+            <p id="npsPick" style="min-height:3em;color:var(--ink-2);font-size:.97rem">Klicken Sie eine Zahl an, um die Logik zu sehen. Diese Auswahl bleibt auf Ihrem Gerät und zählt nicht. Gezählt wird gleich die echte Umfrage auf der nächsten Folie.</p>
+          </div>
+          <div class="card">
+            <span class="tag">Interaktiv · Rechnen Sie mit</span>
+            <h3>Der NPS-Rechner</h3>
+            <p style="font-size:.95rem;color:var(--ink-3)">Die Werte stehen auf dem Beispiel aus der Praxis: 100 Antworten, und trotz 30 Prozent begeisterter Kunden landet der Wert bei null.</p>
+            <div class="npsrow">
+              <label for="npsD">Detraktoren 1–6<input type="number" id="npsD" min="0" value="30"></label>
+              <label for="npsP">Passive 7–8<input type="number" id="npsP" min="0" value="40"></label>
+              <label for="npsR">Promotoren 9–10<input type="number" id="npsR" min="0" value="30"></label>
+            </div>
+            <div class="npsmeter">
+              <div class="npsbar" id="npsBar" aria-hidden="true"><span class="d" style="flex-basis:30%">30%</span><span class="p" style="flex-basis:40%">40%</span><span class="r" style="flex-basis:30%">30%</span></div>
+              <div style="display:flex;align-items:baseline;gap:1rem;flex-wrap:wrap">
+                <span class="npsnum" id="npsVal">0</span>
+                <span class="mono" style="font-size:.85rem;color:var(--ink-3)" id="npsFormula">30 % Promotoren minus 30 % Detraktoren · 100 Antworten</span>
+              </div>
+            </div>
+            <p style="font-size:.95rem;color:var(--ink-2)">Die Lehre daraus: Passive sind im NPS unsichtbar. Wer sie ignoriert, übersieht die größte Gruppe. Und wer Detraktoren um einen einzigen Punkt nach oben bewegt, bewegt die Kennzahl gar nicht, solange sie unter sieben bleiben.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide" data-chapter="05 Feedback" data-title="Ihre Bewertung · QR-Code">
+      <div class="inner">
+        <p class="eyebrow" style="margin-bottom:.7rem">Jetzt echt · zwei Minuten</p>
+        <h3 class="blockhead">Wie haben Sie diese Vorlesung erlebt?</h3>
+        <p class="lead blocklead">Bitte scannen Sie den Code mit der Kamera Ihres Handys. Die Umfrage läuft über die Hochschulplattform der TH Köln, dauert keine zwei Minuten und ist anonym.</p>
+        <div class="qrbig">
+          <figure class="qrcard">
+            <img src="img/qr-nps.png" alt="QR-Code zur Feedback-Umfrage der Vorlesung">
+            <figcaption>Kamera öffnen · Code anvisieren · auf die Einblendung tippen</figcaption>
+          </figure>
+          <div class="qrtext">
+            <div class="card">
+              <span class="tag">Falls der Scan nicht klappt</span>
+              <h3>Direkt im Browser öffnen</h3>
+              <p style="word-break:break-all"><a href="https://th-koeln.sciebo.de/apps/forms/s/g47pNjJLJ5K52dDSLabSNNag">th-koeln.sciebo.de/apps/forms/s/g47pNjJLJ5K52dDSLabSNNag</a></p>
+              <p style="color:var(--ink-3);font-size:.95rem">Für die Zoom-Gruppe steht derselbe Link im Chat und in ILU.</p>
+            </div>
+            <div class="note">
+              <span class="tag">Was ich damit mache</span>
+              <p>Ich rechne den Wert nach der Formel von der vorigen Folie aus und zeige ihn Ihnen in der nächsten Sitzung. Bei einer Bewertung unter sieben interessiert mich vor allem das Freitextfeld — das ist der Teil, aus dem ich die Vorlesung verbessern kann.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide" data-chapter="05 Feedback" data-title="Bis nächste Woche">
+      <div class="inner">
+        <h3 class="blockhead">Bis zum 15. Oktober</h3>
+        <div class="g2">
+          <div class="note">
+            <span class="tag">Hausaufgabe</span>
+            <p><b>Neun Arbeitsschritte auf ein aktuelles Thema.</b> Künstliche Intelligenz: Wie sehen die Anwendungen aus, welche Auswirkungen für unsere Gesellschaft sind zu erwarten? Gehen Sie die neun Arbeitsschritte des Forschens für diese Fragestellung durch. Eine Seite genügt, wir besprechen ausgewählte Ergebnisse.</p>
+          </div>
+          <div class="note v">
+            <span class="tag">Vorbereitung</span>
+            <p><b>Miro und Gruppenbildung.</b> Loggen Sie sich in das Miro-Board ein und finden Sie sich in Gruppen zusammen. Wer noch keine Gruppe hat, trägt sich auf dem Board in die Suchspalte ein. Nächste Woche starten wir mit der Unternehmensanalyse.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><b style="color:var(--ink);font-size:.97rem">Grundlagen der Betriebswirtschaftslehre 1 · Vorlesung 1 · 8. Oktober 2026</b></p>
+    <p>Prof. Dr. Dominik Orbach · Institut für Versicherungswesen (ivwKöln) · Fakultät für Wirtschafts- und Rechtswissenschaften · TH Köln<br>
+    Sprechstunde nach Buchung: <a href="https://scheduler.zoom.us/dominik-orbach">scheduler.zoom.us/dominik-orbach</a> · <a href="mailto:dominik.orbach@th-koeln.de">dominik.orbach@th-koeln.de</a></p>
+    <p>Grundlage der Veranstaltung: Thommen, J.-P.; Achleitner, A.-K.: Allgemeine Betriebswirtschaftslehre. 10. Auflage, Wiesbaden 2023.<br>
+    Die Beispielquellen in Kapitel 03 stammen aus: Gabler Wirtschaftslexikon (2021), Homo oeconomicus · Bundeszentrale für politische Bildung, Gossensche Gesetze, in: Duden Wirtschaft von A bis Z, 6. Auflage 2016 · Büttner, Hans-Peter (2007), Die Nutzlosigkeit der neoklassischen Nutzenlehre, Gastbeitrag · Wikipedia, Haushaltstheorie. Alle abgerufen am 18.09.2026.</p>
+    <p class="hint">Diese Seite ersetzt den Foliensatz. Über „Präsentieren“ starten Sie den Vollbildmodus, über „PDF“ erzeugen Sie die Druckfassung zum Mitnehmen.</p>
+  </div>
+</footer>
+
+<!-- Präsentationsmodus -->
+<div id="deckIndex" hidden>
+  <h3>Alle Folien</h3>
+  <ol id="deckList"></ol>
+</div>
+<div id="deckbar" hidden>
+  <div class="dprog" id="dprog"></div>
+  <span class="chap" id="deckChapter"></span>
+  <span class="count" id="deckCount"></span>
+  <span class="spacer"></span>
+  <span class="dclock" id="deckClock">00:00</span>
+  <span class="dnow" id="deckNow"></span>
+  <span class="spacer"></span>
+  <button class="nav" id="dPrev" aria-label="Zurück">&#8592;</button>
+  <button class="nav" id="dNext" aria-label="Weiter">&#8594;</button>
+  <span class="steps-ind" id="stepsInd"></span>
+  <button id="dSteps" aria-pressed="true" title="Elemente einzeln einblenden (Taste S)">Schritte</button>
+  <button id="dIndex">Übersicht</button>
+  <button id="dFull">Vollbild</button>
+  <button id="dExit">Beenden</button>
+</div>
+
+
+
+<script>
+
+(function(){
+  "use strict";
+  var LS={get:function(k){try{return localStorage.getItem(k)}catch(e){return null}},
+          set:function(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+
+  /* =========================================================
+     VIDEOBOTSCHAFTEN — hier die beiden Videos eintragen
+     src: Dateiname des Videos, z. B. "video/alumni-1.mp4".
+     Solange src leer ist, zeigt die Folie einen Platzhalter.
+     poster: optionales Standbild, z. B. "img/alumni-1.jpg".
+     ========================================================= */
+  var ALUMNI=[
+    /* Die Videobotschaften laufen nur in der Vorlesung, nicht auf dieser oeffentlichen Seite. */
+    {name:"Anja Öztas", info:"Leiterin Schutzbrief bei der ROLAND Schutzbrief-Versicherung AG", zitat:"", src:"", poster:""},
+    {name:"Dr. Fabian Pütz", info:"Vorstandsmitglied der DEVK", zitat:"", src:"", poster:""}
+  ];
+  (function(){
+    var grid=document.getElementById('alumniGrid');
+    if(!grid) return;
+    ALUMNI.forEach(function(a,i){
+      var fig=document.createElement('figure'); fig.className='vid';
+      var frame=document.createElement('div'); frame.className='frame';
+      if(a.src){
+        frame.classList.add('mitvideo');
+        if(a.hoch) frame.classList.add('hoch');
+        var v=document.createElement('video');
+        v.controls=true; v.playsInline=true; v.preload='metadata';
+        v.src=a.src; if(a.poster) v.poster=a.poster;
+        frame.appendChild(v);
+      }else{
+        var ph=document.createElement('div'); ph.className='ph';
+        ph.innerHTML='<span class="disc"><span></span></span><b>Videobotschaft</b><small>Wird in der Vorlesung gezeigt, nicht auf dieser Seite.</small>';
+        frame.appendChild(ph);
+      }
+      fig.appendChild(frame);
+      var cap=document.createElement('figcaption');
+      var b=document.createElement('b'); b.textContent=a.name||'Name folgt';
+      var sp=document.createElement('span'); sp.textContent=a.info||'Abschlussjahrgang und heutige Tätigkeit folgen';
+      cap.appendChild(b); cap.appendChild(sp);
+      if(a.zitat){ var q=document.createElement('q'); q.textContent=a.zitat; cap.appendChild(q); }
+      fig.appendChild(cap);
+      grid.appendChild(fig);
+    });
+  })();
+
+  /* ---------- Startbildschirm: Zahlen hochzählen ---------- */
+  (function(){
+    var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    var els=[].slice.call(document.querySelectorAll('.wfacts .v'));
+    if(!els.length||reduce) return;
+    if(document.visibilityState!=='visible') return;
+    els.forEach(function(el,k){
+      var ziel=parseInt(el.dataset.count,10); if(isNaN(ziel)) return;
+      var dauer=900+k*120, t0=null, fertig=false;
+      function ende(){ if(!fertig){ fertig=true; el.textContent=ziel; } }
+      el.textContent='0';
+      function schritt(ts){
+        if(fertig) return;
+        if(t0===null) t0=ts;
+        var p=Math.min(1,(ts-t0)/dauer);
+        el.textContent=Math.round(ziel*(1-Math.pow(1-p,3)));
+        if(p<1) requestAnimationFrame(schritt); else ende();
+      }
+      setTimeout(function(){requestAnimationFrame(schritt)},250);
+      setTimeout(ende,dauer+900);   // Sicherung: Zielwert steht in jedem Fall
+    });
+  })();
+
+  /* ---------- Fortschritt + aktive Navigation ---------- */
+  var bar=document.getElementById('progress');
+  var navLinks=[].slice.call(document.querySelectorAll('nav.top li a'));
+  var secs=navLinks.map(function(a){return document.getElementById(a.getAttribute('href').slice(1))}).filter(Boolean);
+  function onScroll(){
+    if(document.body.classList.contains('deck')) return;
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    bar.style.width=(h>0?Math.min(100,window.scrollY/h*100):0)+'%';
+    var y=window.scrollY+140,cur=-1;
+    secs.forEach(function(s,i){ if(s.offsetTop<=y) cur=i; });
+    navLinks.forEach(function(a,i){ a.classList.toggle('active',i===cur); });
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+
+  /* ---------- Theme ---------- */
+  var stored=LS.get('bwl-theme');
+  if(stored) document.documentElement.setAttribute('data-theme',stored);
+  document.getElementById('themeToggle').addEventListener('click',function(){
+    var isDark=document.documentElement.getAttribute('data-theme')==='dark'
+      || (!document.documentElement.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme:dark)').matches);
+    var next=isDark?'light':'dark';
+    document.documentElement.setAttribute('data-theme',next);
+    LS.set('bwl-theme',next);
+  });
+  document.getElementById('printBtn').addEventListener('click',function(){
+    if(document.body.classList.contains('deck')) deckExit();
+    window.print();
+  });
+
+  /* ---------- Timer ---------- */
+  var PLAN=[
+    {min:0,len:20,label:'01 Einführung'},
+    {min:20,len:15,label:'02 Organisation'},
+    {min:35,len:33,label:'03 Wissenschaftstheorie'},
+    {min:68,len:12,label:'04 Projekt'},
+    {min:80,len:10,label:'05 Feedback'}
+  ];
+  var TOTAL=90*60,tSec=0,tRun=null;
+  var tbar=document.getElementById('timerbar'),clock=document.getElementById('clock'),
+      nowl=document.getElementById('nowlabel'),fill=document.getElementById('fill'),
+      track=document.getElementById('track'),tStart=document.getElementById('tStart'),
+      tToggle=document.getElementById('timerToggle'),
+      dClock=document.getElementById('deckClock'),dNow=document.getElementById('deckNow');
+  PLAN.forEach(function(p,i){
+    var s=document.createElement('span');
+    s.style.flexBasis=(p.len/90*100)+'%';
+    s.style.background=i%2?'rgba(255,255,255,.10)':'rgba(255,255,255,.2)';
+    track.appendChild(s);
+  });
+  function paintTimer(){
+    var m=Math.floor(tSec/60),s=tSec%60;
+    var txt=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+    clock.textContent=txt; dClock.textContent=txt;
+    fill.style.width=Math.min(100,tSec/TOTAL*100)+'%';
+    var cur=PLAN[0];
+    PLAN.forEach(function(p){ if(tSec/60>=p.min) cur=p; });
+    var rest=Math.max(0,Math.round(cur.min+cur.len-tSec/60));
+    var lbl= tSec===0 ? 'Bereit · 90 Minuten' : cur.label+' · noch '+rest+' Min';
+    nowl.textContent=lbl; dNow.textContent= tSec===0?'':('noch '+rest+' Min');
+  }
+  function timerToggleFn(){ var on=tbar.hidden; tbar.hidden=!on; tToggle.setAttribute('aria-pressed',String(on)); paintTimer(); }
+  tToggle.addEventListener('click',timerToggleFn);
+  function timerStart(){
+    if(tRun){clearInterval(tRun);tRun=null;tStart.textContent='Weiter';}
+    else{tRun=setInterval(function(){tSec++;if(tSec>TOTAL){clearInterval(tRun);tRun=null;tStart.textContent='Start';}paintTimer();},1000);tStart.textContent='Pause';}
+  }
+  tStart.addEventListener('click',timerStart);
+  document.getElementById('tReset').addEventListener('click',function(){
+    if(tRun){clearInterval(tRun);tRun=null;} tSec=0; tStart.textContent='Start'; paintTimer();
+  });
+  paintTimer();
+
+  /* ---------- Tabs ---------- */
+  [].slice.call(document.querySelectorAll('.tabs button[role="tab"]')).forEach(function(b){
+    b.addEventListener('click',function(){
+      [].slice.call(b.parentNode.querySelectorAll('button[role="tab"]')).forEach(function(o){
+        var panel=document.getElementById(o.getAttribute('aria-controls'));
+        var on=(o===b);
+        o.setAttribute('aria-selected',String(on));
+        if(panel) panel.hidden=!on;
+      });
+    });
+  });
+
+  /* ---------- Sitznachbar ---------- */
+  var ICE=[
+    'Name, Heimatort — und warum ausgerechnet Versicherungswesen?',
+    'Welche Entscheidung hat Sie hierher gebracht — und wie lange haben Sie dafür gebraucht?',
+    'Nennen Sie ein Unternehmen, das Sie bewundern. Und eines, dem Sie kein Geld anvertrauen würden.',
+    'Was war das Letzte, das Sie versichert haben — oder bewusst nicht versichert haben?',
+    'Wenn Sie in fünf Jahren eine Sache können müssten, die Sie heute nicht können: welche?',
+    'Welches Produkt haben Sie zuletzt gekauft, weil die Werbung gut war? Geben Sie es ruhig zu.',
+    'Wofür würden Sie ein eigenes Unternehmen gründen, wenn Geld keine Rolle spielte?',
+    'Was muss am 28. Januar passiert sein, damit dieses Semester für Sie gut war?'
+  ];
+  var ii=0,iceQ=document.getElementById('iceQ'),iceC=document.getElementById('iceCount'),
+      icePrint=document.getElementById('icePrint');
+  ICE.forEach(function(q,i){
+    var d=document.createElement('div'); d.className='pb';
+    d.innerHTML='<span class="n"></span><div><b></b></div>';
+    d.querySelector('.n').textContent=(i+1<10?'0':'')+(i+1);
+    d.querySelector('b').textContent=q;
+    icePrint.appendChild(d);
+  });
+  document.getElementById('iceNext').addEventListener('click',function(){
+    ii=(ii+1)%ICE.length;
+    iceQ.style.opacity=0;
+    setTimeout(function(){iceQ.textContent=ICE[ii];iceQ.style.opacity=1;iceC.textContent='Frage '+(ii+1)+' von '+ICE.length;},180);
+  });
+
+  /* ---------- Neun Arbeitsschritte ---------- */
+  var STEPS=[
+    {h:'Beschreiben',s:'Darstellung ohne Bewertung',k:'Deskriptiv',
+     t:'Was ist überhaupt das Problem? Weltweit wachsende Risiken mit gravierenden Folgen für Lebensraum, Gesundheit, Wirtschaft — bis hin zu Flucht und Konflikten. In diesem Schritt wird noch nichts erklärt und nichts bewertet.'},
+    {h:'Zusammentragen',s:'Quellen anhäufen, zusammenfassen, ergänzen',k:'Kompilieren',
+     t:'Veränderungen in Klima und Natur weltweit, Unsicherheit über das Ausmaß, dokumentierte Auswirkungen auf Gesundheit und Vermögen, Schadenstatistiken der Rückversicherer. Sie sammeln — und Sie notieren, woher jede Zahl stammt.'},
+    {h:'Systematisieren',s:'Wissen vernetzen und kategorisieren',k:'Ordnen',
+     t:'Sortieren nach Natur (Wald, Ökosystem, Tierwelt), Wirtschaft, Versicherbarkeitskriterien, internationaler Betroffenheit und der Historie neuartiger Risiken — Erdbeben und Atomenergie sind die naheliegenden Vorbilder.'},
+    {h:'Vergleichen und Kontrastieren',s:'Gemeinsamkeiten und Gegensätze herausarbeiten',k:'Gegenüberstellen',
+     t:'Das Ahrtal-Hochwasser 2021 neben dem japanischen Erdbebenrisiko: zwei Naturgefahren, zwei völlig verschiedene Antworten aus Versicherungsdichte, Pflichtversicherung und staatlicher Letztabsicherung. Der Kontrast zeigt, was hierzulande fehlt.'},
+    {h:'Analysieren',s:'Zusammenhänge, Motive und Annahmen auseinandernehmen',k:'Kausal',
+     t:'Ursache-Wirkungs-Zusammenhänge: Welche Risikoursachen wirken wie auf bestehende Versicherungsschutzkonzepte? An welcher Stelle bricht die Kalkulation, wenn Ereignisse häufiger und gleichzeitig eintreten?'},
+    {h:'Interpretieren',s:'Die Aussage hinter dem Text suchen',k:'Auslegen',
+     t:'Was bedeutet die Formulierung „Elementarschäden“ in einem Bedingungswerk tatsächlich — für die Versicherte, für den Versicherer, vor Gericht? Interpretation ist kein Beiwerk: Sie entscheidet im Schadenfall über Millionen.'},
+    {h:'Bewerten',s:'Beurteilung anhand von Kriterien und übergeordneten Werten',k:'Wertend, strittig',
+     t:'Dieselbe Lage sieht aus fünf Perspektiven verschieden aus: Staat, Politik, Unternehmen, private Haushalte, Versicherer. Neue Elementarversicherungen sind für die einen Fortschritt, für die anderen eine Kostenlawine. In der Wissenschaftstheorie ist dieser Schritt umstritten — weil hier Werte einfließen.'},
+    {h:'Vorschreiben',s:'Handlungsanleitungen und Regeln ableiten',k:'Normativ',
+     t:'Drei Modelle stehen zur Wahl: Staat und private Versicherer gemeinsam mit Obergrenzen der Risikodeckung, rein staatliche Regelung, oder rein privatwirtschaftliche Lösung. In der BWL ist dieser Schritt besonders häufig — und besonders selten sauber begründet.'},
+    {h:'Modell- und Theoriebildung',s:'Systematische Erklärung von Zusammenhängen',k:'Abstrahieren',
+     t:'Am Ende steht ein Modell, das über den Einzelfall hinaus trägt: die Kriterien der Versicherbarkeit — Zufälligkeit, Eindeutigkeit, Schätzbarkeit, Unabhängigkeit und Größe des Schadens. Damit lässt sich jedes neue Risiko prüfen, auch eines, das es heute noch nicht gibt.'}
+  ];
+  var stepsEl=document.getElementById('steps'),outEl=document.getElementById('stepout'),printEl=document.getElementById('stepsPrint');
+  STEPS.forEach(function(st,i){
+    var b=document.createElement('button');
+    b.type='button'; b.className='step'; b.setAttribute('aria-pressed','false');
+    b.innerHTML='<span class="n"></span><span class="h"></span><span class="s"></span>';
+    b.querySelector('.n').textContent=(i+1<10?'0':'')+(i+1);
+    b.querySelector('.h').textContent=st.h;
+    b.querySelector('.s').textContent=st.s;
+    b.addEventListener('click',function(){
+      [].slice.call(stepsEl.children).forEach(function(o){o.setAttribute('aria-pressed','false')});
+      b.setAttribute('aria-pressed','true');
+      outEl.innerHTML='<span class="k"></span><h4></h4><p></p>';
+      outEl.querySelector('.k').textContent='Schritt '+(i+1)+' von 9 · '+st.k;
+      outEl.querySelector('h4').textContent=st.h;
+      outEl.querySelector('p').textContent=st.t;
+    });
+    stepsEl.appendChild(b);
+    var pr=document.createElement('div'); pr.className='pb';
+    pr.innerHTML='<span class="n"></span><div><b></b><span></span></div>';
+    pr.querySelector('.n').textContent=(i+1<10?'0':'')+(i+1);
+    pr.querySelector('b').textContent=st.h+' — '+st.s;
+    pr.querySelector('span:last-child').textContent=st.t;
+    printEl.appendChild(pr);
+  });
+
+  /* ---------- Begriffsquiz ---------- */
+  var TERMS=['Definition','Axiom','Postulat','Hypothese','Theorie'];
+  var QITEMS=[
+    {a:'Definition',t:'Nutzenmaximierung bezeichnet das Verhalten eines Wirtschaftssubjekts, bei gegebenem Budget diejenige Güterkombination zu wählen, die ihm den höchstmöglichen Nutzen stiftet.',
+     f:'Definition. Eine Festlegung, was der Begriff bedeuten soll — nicht wahr oder falsch, sondern brauchbar oder unbrauchbar.'},
+    {a:'Axiom',t:'Der Mensch handelt stets rational und wählt unter mehreren Alternativen diejenige mit dem größtmöglichen Nutzen.',
+     f:'Axiom. Die Grundannahme der Mikroökonomie, nicht abgeleitet und im Modell nicht hinterfragt. Die Verhaltensökonomie hat genau hier angesetzt.'},
+    {a:'Postulat',t:'Unternehmen sollen ihr Handeln so ausrichten, dass der Nutzen ihrer Kunden maximiert wird.',
+     f:'Postulat. Am Wort „sollen“ erkennbar: eine Forderung, das Leitbild kundenorientierter Unternehmensführung — keine Beschreibung der Wirklichkeit.'},
+    {a:'Hypothese',t:'Mit steigendem verfügbaren Einkommen eines Haushalts steigt auch dessen realisierter Gesamtnutzen.',
+     f:'Hypothese. Eine zunächst unbewiesene Annahme, die sich an Konsumverhaltensdaten prüfen lässt — verifizieren oder, nach Popper, falsifizieren.'},
+    {a:'Theorie',t:'Die neoklassische Haushaltstheorie erklärt anhand von Indifferenzkurven und Budgetgeraden systematisch, wie und warum Haushalte ihre Konsumentscheidungen so treffen, dass der Gesamtnutzen maximiert wird.',
+     f:'Theorie. Ein ganzes System widerspruchsfreier Aussagen samt Erklärungsanspruch — und damit die höchste Stufe der fünf Begriffe.'}
+  ];
+  var quizEl=document.getElementById('quiz'),scoreEl=document.getElementById('quizScore');
+  function updateScore(){
+    var n=[].slice.call(quizEl.children).filter(function(d){return d.dataset.pick}).length;
+    scoreEl.textContent=n+' von 5 zugeordnet';
+  }
+  function buildQuiz(){
+    quizEl.innerHTML='';
+    QITEMS.forEach(function(q){
+      var d=document.createElement('div'); d.className='qitem'; d.dataset.answer=q.a;
+      var p=document.createElement('p'); p.className='txt'; p.textContent=q.t; d.appendChild(p);
+      var o=document.createElement('div'); o.className='opts';
+      TERMS.forEach(function(t){
+        var b=document.createElement('button'); b.type='button'; b.textContent=t; b.dataset.term=t;
+        b.addEventListener('click',function(){
+          if(d.classList.contains('done')) return;
+          [].slice.call(o.children).forEach(function(x){x.classList.remove('sel')});
+          b.classList.add('sel'); d.dataset.pick=t; updateScore();
+        });
+        o.appendChild(b);
+      });
+      d.appendChild(o);
+      var f=document.createElement('p'); f.className='fb'; f.textContent=q.f; d.appendChild(f);
+      quizEl.appendChild(d);
+    });
+    updateScore();
+  }
+  document.getElementById('quizCheck').addEventListener('click',function(){
+    var right=0;
+    [].slice.call(quizEl.children).forEach(function(d){
+      d.classList.add('done');
+      var pick=d.dataset.pick,ans=d.dataset.answer;
+      [].slice.call(d.querySelectorAll('.opts button')).forEach(function(b){
+        b.classList.remove('sel');
+        if(b.dataset.term===ans) b.classList.add('ok');
+        else if(b.dataset.term===pick) b.classList.add('no');
+      });
+      if(pick===ans) right++;
+    });
+    scoreEl.textContent=right+' von 5 richtig'+(right===5?' — alle fünf.':'');
+  });
+  document.getElementById('quizReset').addEventListener('click',buildQuiz);
+  buildQuiz();
+
+  /* ---------- Quellencheck ---------- */
+  var SRC=[
+    {ref:'<b>Thommen, J.-P.; Achleitner, A.-K.</b> (2023): Allgemeine Betriebswirtschaftslehre. 10. Auflage, Wiesbaden.',v:'ja',
+     a:'Zitierfähig. Ein etabliertes Lehrbuch in zehnter Auflage, verlagsgeprüft, mit benannten Autoren und vollständigen Angaben. Die sicherste Kategorie für Grundlagenwissen.'},
+    {ref:'<b>Gabler Wirtschaftslexikon</b> (2021): Homo oeconomicus. Springer Fachmedien, Revision vom 24.08.2021.',v:'ja',
+     a:'Zitierfähig. Fachlexikon eines Wissenschaftsverlags, mit Revisionsdatum und redaktioneller Verantwortung. Für Definitionen völlig in Ordnung — für die Argumentation selbst zu dünn.'},
+    {ref:'<b>Bundeszentrale für politische Bildung</b> (o. J.): Gossensche Gesetze, in: Duden Wirtschaft von A bis Z, 6. Auflage 2016.',v:'ja',
+     a:'Zitierfähig. Die bpb ist eine staatliche Einrichtung, die Quelle selbst ein Lexikon eines Fachverlags. Achten Sie auf das „o. J.“ — fehlt das Jahr, muss das Abrufdatum umso genauer stehen.'},
+    {ref:'<b>Büttner, Hans-Peter</b> (2007): Die Nutzlosigkeit der neoklassischen Nutzenlehre. Gastbeitrag in einem Blog, Mai 2007.',v:'teils',
+     a:'Mit Vorbehalt. Der Autor ist benannt, die These aber weder begutachtet noch verlagsgeprüft. Als Beleg für eine Position taugt das, als Beleg für einen Sachverhalt nicht. Und: 2007 ist für eine Debatte lange her.'},
+    {ref:'<b>Wikipedia</b> (o. J.): Haushaltstheorie. Abgerufen am 18.09.2026.',v:'teils',
+     a:'Mit Vorbehalt, und in Hausarbeiten in aller Regel nicht. Wikipedia ist ein hervorragender Einstieg und ein schlechter Beleg: keine feste Autorschaft, jederzeit änderbar. Nutzen Sie stattdessen das Literaturverzeichnis am Artikelende.'},
+    {ref:'<b>Ein KI-Chatbot</b>, auf die Frage nach der Definition von Nutzenmaximierung, ohne Quellenangabe.',v:'nein',
+     a:'Nicht zitierfähig. Die Antwort ist nicht reproduzierbar, nicht überprüfbar und hat keine benennbare Autorschaft. Als Werkzeug zum Verstehen und Strukturieren ausdrücklich erlaubt — aber der Beleg muss aus der Quelle kommen, die Sie selbst gelesen haben.'}
+  ];
+  var LABELS={ja:'Zitierfähig',teils:'Mit Vorbehalt',nein:'Besser nicht'};
+  var sg=document.getElementById('srcgrid');
+  SRC.forEach(function(s){
+    var c=document.createElement('div'); c.className='srccard';
+    var r=document.createElement('p'); r.className='ref'; r.innerHTML=s.ref; c.appendChild(r);
+    var row=document.createElement('div'); row.className='row';
+    ['ja','teils','nein'].forEach(function(k){
+      var b=document.createElement('button'); b.type='button'; b.textContent=LABELS[k]; b.dataset.v=k;
+      b.addEventListener('click',function(){
+        if(c.classList.contains('done')) return;
+        c.classList.add('done');
+        [].slice.call(row.children).forEach(function(x){
+          if(x.dataset.v===s.v) x.classList.add('ok');
+          else if(x===b) x.classList.add('no');
+        });
+      });
+      row.appendChild(b);
+    });
+    c.appendChild(row);
+    var a=document.createElement('p'); a.className='ans'; a.textContent=s.a; c.appendChild(a);
+    sg.appendChild(c);
+  });
+
+  /* ---------- NPS ---------- */
+  var scale=document.getElementById('npsScale'),pickTxt=document.getElementById('npsPick');
+  var saved=LS.get('bwl-nps');
+  for(var n=1;n<=10;n++){
+    (function(n){
+      var b=document.createElement('button'); b.type='button'; b.textContent=n;
+      b.className=n<=6?'det':(n<=8?'pas':'pro');
+      if(saved===String(n)) b.classList.add('picked');
+      b.addEventListener('click',function(){
+        [].slice.call(scale.children).forEach(function(x){x.classList.remove('picked')});
+        b.classList.add('picked'); LS.set('bwl-nps',String(n));
+        var cat=n<=6?'Detraktor':(n<=8?'Passiver':'Promotor');
+        var add=n<=6?'Das zieht den Wert nach unten — und ist die nützlichste Rückmeldung, die ich bekommen kann. Bitte sagen Sie mir, woran es lag.'
+             :n<=8?'Passive zählen in der Formel überhaupt nicht mit. Genau das ist die Eigenart dieser Kennzahl.'
+             :'Promotor. Damit ziehen Sie den Wert nach oben.';
+        pickTxt.textContent='Sie haben '+n+' gewählt. In der NPS-Logik sind Sie damit ein '+cat+'. '+add;
+      });
+      scale.appendChild(b);
+    })(n);
+  }
+  var nD=document.getElementById('npsD'),nP=document.getElementById('npsP'),nR=document.getElementById('npsR'),
+      nBar=document.getElementById('npsBar'),nVal=document.getElementById('npsVal'),nF=document.getElementById('npsFormula');
+  function nps(){
+    var d=Math.max(0,+nD.value||0),p=Math.max(0,+nP.value||0),r=Math.max(0,+nR.value||0),t=d+p+r;
+    if(!t){nVal.textContent='—';nF.textContent='Noch keine Antworten';return;}
+    var pd=d/t*100,pp=p/t*100,pr=r/t*100,score=Math.round(pr-pd);
+    var kids=nBar.children;
+    kids[0].style.flexBasis=pd+'%'; kids[0].textContent=pd>=9?Math.round(pd)+'%':'';
+    kids[1].style.flexBasis=pp+'%'; kids[1].textContent=pp>=9?Math.round(pp)+'%':'';
+    kids[2].style.flexBasis=pr+'%'; kids[2].textContent=pr>=9?Math.round(pr)+'%':'';
+    nVal.textContent=(score>0?'+':'')+score;
+    nVal.style.color=score>0?'var(--gruen)':(score<0?'var(--rot)':'var(--ink)');
+    nF.textContent=Math.round(pr)+' % Promotoren minus '+Math.round(pd)+' % Detraktoren · '+t+' Antworten';
+  }
+  [nD,nP,nR].forEach(function(el){el.addEventListener('input',nps)});
+  nps();
+
+
+  /* ================= SCHRITTWEISES EINBLENDEN ================= */
+  /* Container, deren Kinder im Präsentationsmodus nacheinander erscheinen */
+  var BUILD_SEL='.g2,.g3,.g4,.chain,.pairs,.pestgrid,.outline,.lit,.srcgrid,.steps,.flow,.vidgrid';
+  var buildOn=(LS.get('bwl-builds')!=='0');
+  var buildGroups=[],buildPos=0;
+
+  function sammleBuilds(slide){
+    var gruppen=[];
+    [].slice.call(slide.querySelectorAll(BUILD_SEL)).forEach(function(c){
+      // verschachtelte Container überspringen
+      if(c.parentNode && c.parentNode.closest && c.parentNode.closest(BUILD_SEL)) return;
+      var kinder=[].slice.call(c.children).filter(function(k){
+        return k.nodeType===1 && k.offsetParent!==null || k.nodeType===1;
+      });
+      if(kinder.length>=3) kinder.forEach(function(k){gruppen.push(k)});
+      else if(kinder.length===2) gruppen.push(kinder[0]),gruppen.push(kinder[1]);
+    });
+    return gruppen;
+  }
+  function buildReset(slide,alleZeigen){
+    [].slice.call(slide.querySelectorAll('.build-hidden,.build-in')).forEach(function(e){
+      e.classList.remove('build-hidden','build-in');
+    });
+    buildGroups=[]; buildPos=0;
+    if(!buildOn||alleZeigen){ buildAnzeige(); return; }
+    buildGroups=sammleBuilds(slide);
+    if(buildGroups.length<2){ buildGroups=[]; buildAnzeige(); return; }
+    buildGroups.forEach(function(e){e.classList.add('build-hidden')});
+    buildAnzeige();
+  }
+  function buildNext(){
+    if(buildPos>=buildGroups.length) return false;
+    var e=buildGroups[buildPos++];
+    e.classList.remove('build-hidden'); e.classList.add('build-in');
+    buildAnzeige();
+    return true;
+  }
+  function buildPrev(){
+    if(buildPos<=0) return false;
+    var e=buildGroups[--buildPos];
+    e.classList.remove('build-in'); e.classList.add('build-hidden');
+    buildAnzeige();
+    return true;
+  }
+  function buildAlle(){
+    while(buildPos<buildGroups.length){
+      var e=buildGroups[buildPos++];
+      e.classList.remove('build-hidden'); e.classList.add('build-in');
+    }
+    buildAnzeige();
+  }
+  function buildAnzeige(){
+    var ind=document.getElementById('stepsInd');
+    if(!ind) return;
+    if(!buildOn||!buildGroups.length){ ind.textContent=''; return; }
+    ind.textContent=buildPos+'/'+buildGroups.length;
+  }
+
+  /* =========================================================
+     PRÄSENTATIONSMODUS
+     ========================================================= */
+
+  /* ---------- Darstellungsgröße im Präsentationsmodus ---------- */
+  var zoomManuell=parseFloat(LS.get('bwl-zoom')||'1');
+  if(!isFinite(zoomManuell)||zoomManuell<0.8||zoomManuell>1.6) zoomManuell=1;
+  var zoomAnzeige=null;
+  function zoomAuto(){
+    var b=window.innerWidth||1440, h=window.innerHeight||800;
+    var f=Math.min(b/1440,h/780);
+    return Math.max(1,Math.min(1.35,f));
+  }
+  function zoomGesamt(){ return zoomAuto()*zoomManuell; }
+  function zoomSetzen(){
+    if(!document.body.classList.contains('deck')){
+      document.documentElement.style.removeProperty('--zoom');
+    }else{
+      document.documentElement.style.setProperty('--zoom',zoomGesamt().toFixed(3));
+    }
+    if(zoomAnzeige) zoomAnzeige.textContent=Math.round(zoomGesamt()*100)+' %';
+  }
+  function zoomAendern(d){
+    if(d===0) zoomManuell=1;
+    else zoomManuell=Math.max(0.8,Math.min(1.6,Math.round((zoomManuell+d)*100)/100));
+    LS.set('bwl-zoom',String(zoomManuell));
+    zoomSetzen();
+  }
+  window.addEventListener('resize',zoomSetzen);
+
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var deckOn=false,idx=0,rueckwaerts=false;
+  var deckbar=document.getElementById('deckbar'),
+      dChap=document.getElementById('deckChapter'),
+      dCount=document.getElementById('deckCount'),
+      dProg=document.getElementById('dprog'),
+      dIndexPane=document.getElementById('deckIndex'),
+      dList=document.getElementById('deckList');
+
+  slides.forEach(function(s,i){
+    var li=document.createElement('li');
+    var b=document.createElement('button'); b.type='button';
+    b.innerHTML='<span class="n"></span><span class="t"></span><span class="c"></span>';
+    b.querySelector('.n').textContent='Folie '+(i+1);
+    b.querySelector('.t').textContent=s.dataset.title||'';
+    b.querySelector('.c').textContent=s.dataset.chapter||'';
+    b.addEventListener('click',function(){ show(i); hideIndex(); });
+    li.appendChild(b); dList.appendChild(li);
+  });
+  var listBtns=[].slice.call(dList.querySelectorAll('button'));
+
+  function show(i){
+    idx=Math.max(0,Math.min(slides.length-1,i));
+    slides.forEach(function(s,k){ s.classList.toggle('on',k===idx); });
+    var s=slides[idx];
+    dChap.textContent=s.dataset.chapter||'';
+    dCount.textContent='Folie '+(idx+1)+' von '+slides.length+' · '+(s.dataset.title||'');
+    dProg.style.width=((idx+1)/slides.length*100)+'%';
+    listBtns.forEach(function(b,k){b.classList.toggle('cur',k===idx)});
+    s.scrollTop=0;
+    buildReset(s,rueckwaerts);
+    rueckwaerts=false;
+  }
+  function deckEnter(start){
+    deckOn=true; document.body.classList.add('deck');
+    deckbar.hidden=false;
+    zoomSetzen();
+    show(typeof start==='number'?start:0);
+    if(tbar) tbar.hidden=true;
+  }
+  function deckExit(){
+    deckOn=false; document.body.classList.remove('deck');
+    document.documentElement.style.removeProperty('--zoom');
+    deckbar.hidden=true; hideIndex();
+    slides.forEach(function(s){s.classList.remove('on')});
+    if(document.fullscreenElement && document.exitFullscreen) document.exitFullscreen();
+    onScroll();
+  }
+  function showIndex(){ buildAlle(); dIndexPane.hidden=false; }
+  function hideIndex(){ dIndexPane.hidden=true; }
+  function toggleFull(){
+    if(!document.fullscreenElement){ if(document.documentElement.requestFullscreen) document.documentElement.requestFullscreen(); }
+    else if(document.exitFullscreen){ document.exitFullscreen(); }
+  }
+  document.getElementById('deckStart').addEventListener('click',function(){
+    // Beim Start dort einsteigen, wo gerade gescrollt wurde
+    var y=window.scrollY+160,start=0;
+    slides.forEach(function(s,i){ if(s.getBoundingClientRect().top+window.scrollY<=y) start=i; });
+    deckEnter(start);
+  });
+  var wStart=document.getElementById('welcomeStart');
+  if(wStart) wStart.addEventListener('click',function(){deckEnter(0)});
+  function vor(){ if(buildNext()) return; show(idx+1); }
+  function zurueck(){ if(buildPrev()) return; rueckwaerts=true; show(idx-1); }
+  document.getElementById('dNext').addEventListener('click',vor);
+  document.getElementById('dPrev').addEventListener('click',zurueck);
+  var stepsBtn=document.getElementById('dSteps');
+  if(stepsBtn){
+    stepsBtn.setAttribute('aria-pressed',String(buildOn));
+    stepsBtn.addEventListener('click',function(){
+      buildOn=!buildOn; LS.set('bwl-builds',buildOn?'1':'0');
+      stepsBtn.setAttribute('aria-pressed',String(buildOn));
+      if(deckOn) buildReset(slides[idx],!buildOn);
+    });
+  }
+
+  (function(){
+    var leiste=document.getElementById('deckbar'); if(!leiste) return;
+    var anker=document.getElementById('dIndex'); if(!anker) return;
+    var w=document.createElement('span'); w.className='zoomwrap';
+    var minus=document.createElement('button'); minus.className='nav'; minus.type='button';
+    minus.textContent='−'; minus.title='Schrift kleiner (Taste −)'; minus.setAttribute('aria-label','Schrift kleiner');
+    var wert=document.createElement('span'); wert.className='zv'; wert.title='Darstellungsgröße, Taste 0 setzt zurück';
+    var plus=document.createElement('button'); plus.className='nav'; plus.type='button';
+    plus.textContent='+'; plus.title='Schrift größer (Taste +)'; plus.setAttribute('aria-label','Schrift größer');
+    minus.addEventListener('click',function(){zoomAendern(-0.05)});
+    plus.addEventListener('click',function(){zoomAendern(0.05)});
+    wert.addEventListener('click',function(){zoomAendern(0)});
+    w.appendChild(minus); w.appendChild(wert); w.appendChild(plus);
+    leiste.insertBefore(w,anker);
+    zoomAnzeige=wert; zoomSetzen();
+  })();
+
+  document.getElementById('dExit').addEventListener('click',deckExit);
+  document.getElementById('dFull').addEventListener('click',toggleFull);
+  document.getElementById('dIndex').addEventListener('click',function(){
+    if(dIndexPane.hidden) showIndex(); else hideIndex();
+  });
+
+  document.addEventListener('keydown',function(e){
+    var tag=e.target.tagName;
+    var typing=(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT');
+    if(!deckOn){
+      if(typing) return;
+      if(e.key==='t'||e.key==='T'){ timerToggleFn(); }
+      if(e.key==='p'||e.key==='P'){ e.preventDefault(); deckEnter(0); }
+      return;
+    }
+    switch(e.key){
+      case 'ArrowRight': case 'PageDown': case ' ': case 'Enter':
+        if(typing && e.key===' ') return;
+        e.preventDefault(); if(!dIndexPane.hidden) hideIndex(); vor(); break;
+      case 'ArrowLeft': case 'PageUp':
+        e.preventDefault(); if(!dIndexPane.hidden) hideIndex(); zurueck(); break;
+      case 'ArrowDown': if(typing) return; break;
+      case 'ArrowUp': if(typing) return; break;
+      case 'Home': e.preventDefault(); show(0); break;
+      case 'End': e.preventDefault(); show(slides.length-1); break;
+      case 'Escape':
+        if(!dIndexPane.hidden){ hideIndex(); } else { deckExit(); } break;
+      case 'o': case 'O':
+        if(typing) return; e.preventDefault();
+        if(dIndexPane.hidden) showIndex(); else hideIndex(); break;
+      case 'a': case 'A': if(typing) return; e.preventDefault(); buildAlle(); break;
+      case 's': case 'S':
+        if(typing) return; e.preventDefault();
+        if(stepsBtn) stepsBtn.click(); break;
+      case '+': case '=': if(typing) return; e.preventDefault(); zoomAendern(0.05); break;
+      case '-': case '_': if(typing) return; e.preventDefault(); zoomAendern(-0.05); break;
+      case '0': if(typing) return; e.preventDefault(); zoomAendern(0); break;
+      case 'f': case 'F': if(typing) return; e.preventDefault(); toggleFull(); break;
+      case 't': case 'T': if(typing) return; timerStart(); break;
+    }
+  });
+})();
+
+</script>
