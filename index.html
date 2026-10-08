@@ -38,12 +38,14 @@
 *{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);
   font-size:clamp(17px,1.05vw,19px);line-height:1.62;-webkit-font-smoothing:antialiased}
-h1,h2,h3{margin:0;font-family:var(--display);font-weight:800;line-height:1.1;letter-spacing:-.03em;text-wrap:balance}
+h1,h2,h3{margin:0;font-family:var(--display);font-weight:800;line-height:1.1;letter-spacing:-.03em;text-wrap:balance;overflow-wrap:break-word;hyphens:auto}
 p{margin:0}
 a{color:inherit}
 .wrap{max-width:1040px;margin-inline:auto;padding:clamp(2.6rem,6vw,5rem) clamp(20px,5vw,48px) clamp(3rem,6vw,5rem)}
 .eyebrow{font-family:var(--mono);font-size:.8rem;letter-spacing:.15em;word-spacing:.16em;text-transform:uppercase;color:var(--rot);margin-bottom:.8rem}
 h1{font-size:clamp(2.2rem,5.4vw,3.8rem)}
+/* 'Betriebswirtschaftslehre' ist laenger als ein Telefondisplay breit */
+@media screen and (max-width:520px){h1{font-size:clamp(1.75rem,8.2vw,2.4rem);letter-spacing:-.035em}}
 h1 em{font-style:normal;background:var(--verlauf);-webkit-background-clip:text;background-clip:text;color:transparent}
 .sub{margin-top:1.1rem;font-size:clamp(1.05rem,1.4vw,1.28rem);color:var(--ink-2);max-width:62ch}
 .meta{margin-top:1.3rem;font-family:var(--mono);font-size:.84rem;letter-spacing:.04em;word-spacing:.14em;color:var(--ink-3);line-height:1.8}

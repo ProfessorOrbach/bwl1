@@ -1,4 +1,5 @@
 <meta charset="utf-8">
+<script>document.documentElement.lang="de";</script>
 <title>Grundlagen der BWL Vorlesung 1</title>
 <meta name="description" content="Vorlesung 1 ‘Einleitung’ aus Grundlagen der Betriebswirtschaftslehre 1 bei Prof. Dr. Dominik Orbach, Institut für Versicherungswesen der TH Köln, Wintersemester 2026/27.">
 <meta name="author" content="Prof. Dr. Dominik Orbach">
@@ -739,6 +740,26 @@ body.deck #alumniGrid .vid .frame{aspect-ratio:3/2}
 body.deck .slide[data-title="Stimmen von Ehemaligen"]{padding-block:1.6rem!important}
 body.deck .slide[data-title="Stimmen von Ehemaligen"] .blocklead{margin-bottom:.7rem}
 @media print{#alumniGrid .vid .frame{aspect-ratio:4/3}}
+
+/* ============ Telefon: Kopfleiste passte nicht in 390 px ============ */
+/* .tools stand auf flex:none, dadurch war das Dokument breiter als das Fenster
+   und die ganze Seite liess sich seitlich schieben. Bewusst "screen", damit die
+   Regel nicht auch auf A4 greift. */
+@media screen and (max-width:620px){
+  /* "Betriebswirtschaftslehre" war als ein Wort 451 px breit und hat die ganze
+     Seite seitlich verschoben. Kleinere Mindestgroesse plus Silbentrennung. */
+  .welcome h1,.hero h1{font-size:clamp(1.85rem,8.8vw,2.9rem);letter-spacing:-.035em}
+  /* hyphens:auto trennt silbengerecht, wo der Browser ein Woerterbuch hat;
+     overflow-wrap:anywhere faengt die Faelle ab, wo er keines hat. */
+  h1,h2,h3,.chaphead h2,h3.blockhead,.claimline,.claimsub{overflow-wrap:anywhere;hyphens:auto}
+  .wfacts .v{font-size:clamp(1.8rem,7vw,2.4rem)}
+  nav.top{padding-inline:14px}
+  nav.top .row{flex-wrap:wrap;row-gap:.45rem;padding-block:.55rem;min-height:0}
+  nav.top .mark{font-size:.98rem}
+  .tools{flex:1 1 100%;flex-wrap:wrap;gap:.4rem}
+  .toolbtn{font-size:.72rem;padding:.42rem .72rem;letter-spacing:.05em}
+  #timerbar{top:0;padding-inline:14px;gap:.7rem}
+}
 
 /* ============ Vorstellung des Instituts, Newsletter, Recherche ============ */
 /* Hinweis: alle Breakpoints hier bewusst mit "screen", sonst greifen sie auch
