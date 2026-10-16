@@ -9,6 +9,7 @@ als Folien zu zeigen und über die Druckfunktion als PDF zu speichern.
 | Vorlesung | Termin | Thema | Adresse |
 |---|---|---|---|
 | 01 | 08.10.2026 | Einleitung | [vorlesung-1](https://professororbach.github.io/bwl1/vorlesung-1/) |
+| 02 | 15.10.2026 | Unternehmen und Umwelt | [vorlesung-2](https://professororbach.github.io/bwl1/vorlesung-2/) |
 
 Übersicht: <https://professororbach.github.io/bwl1/>
 
