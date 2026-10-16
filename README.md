@@ -3,8 +3,9 @@
 Die Vorlesungsunterlagen zu **Grundlagen der Betriebswirtschaftslehre 1** am Institut für
 Versicherungswesen der TH Köln, Wintersemester 2026/27.
 
-Jede Vorlesung ist eine einzelne HTML-Seite: lesbar als Fließtext, im Präsentationsmodus
-als Folien zu zeigen und über die Druckfunktion als PDF zu speichern.
+Jede Vorlesung ist eine einzelne HTML-Seite: lesbar als Fließtext und im Präsentationsmodus
+als Folien zu zeigen. Der Knopf „PDF“ öffnet den Foliensatz (16:9, eine Seite je Folie);
+die A4-Lesefassung entsteht über die Druckfunktion des Browsers.
 
 | Vorlesung | Termin | Thema | Adresse |
 |---|---|---|---|

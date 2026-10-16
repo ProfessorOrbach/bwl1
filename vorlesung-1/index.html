@@ -876,7 +876,7 @@ body.deck .qtext h3{font-size:1.1rem}
       <button class="toolbtn accent" id="deckStart">Präsentieren</button>
       <button class="toolbtn" id="timerToggle" aria-pressed="false" title="Taste T">Timer</button>
       <button class="toolbtn" id="themeToggle" title="Hell oder Dunkel">Kontrast</button>
-      <button class="toolbtn" id="printBtn">PDF</button>
+      <button class="toolbtn" id="printBtn" title="Foliensatz als PDF öffnen (16:9). Die A4-Lesefassung drucken Sie mit Strg/Cmd+P.">PDF</button>
     </div>
   </div>
 </nav>
@@ -1722,7 +1722,7 @@ body.deck .qtext h3{font-size:1.1rem}
     Sprechstunde nach Buchung: <a href="https://scheduler.zoom.us/dominik-orbach">scheduler.zoom.us/dominik-orbach</a> · <a href="mailto:dominik.orbach@th-koeln.de">dominik.orbach@th-koeln.de</a></p>
     <p>Grundlage der Veranstaltung: Thommen, J.-P.; Achleitner, A.-K.: Allgemeine Betriebswirtschaftslehre. 10. Auflage, Wiesbaden 2023.<br>
     Die Beispielquellen in Kapitel 03 stammen aus: Gabler Wirtschaftslexikon (2021), Homo oeconomicus · Bundeszentrale für politische Bildung, Gossensche Gesetze, in: Duden Wirtschaft von A bis Z, 6. Auflage 2016 · Büttner, Hans-Peter (2007), Die Nutzlosigkeit der neoklassischen Nutzenlehre, Gastbeitrag · Wikipedia, Haushaltstheorie. Alle abgerufen am 18.09.2026.</p>
-    <p class="hint">Diese Seite ersetzt den Foliensatz. Über „Präsentieren“ starten Sie den Vollbildmodus, über „PDF“ erzeugen Sie die Druckfassung zum Mitnehmen.</p>
+    <p class="hint">Diese Seite ersetzt den Foliensatz. Über „Präsentieren“ starten Sie den Vollbildmodus, über „PDF“ öffnen Sie den Foliensatz zum Mitnehmen; die A4-Lesefassung drucken Sie mit Strg/Cmd+P.</p>
   </div>
 </footer>
 
@@ -1846,9 +1846,10 @@ body.deck .qtext h3{font-size:1.1rem}
     document.documentElement.setAttribute('data-theme',next);
     LS.set('bwl-theme',next);
   });
+  /* PDF-Knopf: oeffnet den Foliensatz (16:9, eine Seite je Folie, wie im Praesentationsmodus),
+     erzeugt mit werkzeuge/folien-pdf/folien-pdf.sh. Die A4-Lesefassung bleibt ueber Drucken (Strg/Cmd+P). */
   document.getElementById('printBtn').addEventListener('click',function(){
-    if(document.body.classList.contains('deck')) deckExit();
-    window.print();
+    window.open('BWL1-Vorlesung-1-Folien.pdf','_blank');
   });
 
   /* ---------- Timer ---------- */

@@ -1728,7 +1728,7 @@ body.moderator > :not(#mod){display:none!important}
       <button class="toolbtn accent" id="deckStart">Präsentieren</button>
       <button class="toolbtn" id="timerToggle" aria-pressed="false" title="Taste T">Timer</button>
       <button class="toolbtn" id="themeToggle" title="Hell oder Dunkel">Kontrast</button>
-      <button class="toolbtn" id="printBtn">PDF</button>
+      <button class="toolbtn" id="printBtn" title="Foliensatz als PDF öffnen (16:9). Die A4-Lesefassung drucken Sie mit Strg/Cmd+P.">PDF</button>
     </div>
   </div>
 </nav>
@@ -2682,7 +2682,7 @@ body.moderator > :not(#mod){display:none!important}
     Sprechstunde nach Buchung: <a href="https://scheduler.zoom.us/dominik-orbach">scheduler.zoom.us/dominik-orbach</a> · <a href="mailto:dominik.orbach@th-koeln.de">dominik.orbach@th-koeln.de</a></p>
     <p>Grundlage der Veranstaltung: Thommen, J.-P.; Achleitner, A.-K.: Allgemeine Betriebswirtschaftslehre. Umfassende Einführung aus managementtheoretischer Sicht. 10. Auflage, Wiesbaden 2023, Teil 1. Ergänzend: Ulrich, P.; Fluri, E.: Management. 7. Auflage, Bern 1995 · Maslow, A. H.: A Theory of Human Motivation, in: Psychological Review 50 (1943) · Ramme, I.: Marketing. Einführung mit Fallbeispielen, Aufgaben und Lösungen. Stuttgart 2004.</p>
     <img class="thlogo-print" src="img/th-koeln-logo.svg" alt="TH Köln">
-    <p class="hint">Alle Abbildungen dieser Seite sind eigene Darstellungen nach den genannten Quellen. Über „Präsentieren“ starten Sie den Vollbildmodus, über „PDF“ erzeugen Sie die Druckfassung.</p>
+    <p class="hint">Alle Abbildungen dieser Seite sind eigene Darstellungen nach den genannten Quellen. Über „Präsentieren“ starten Sie den Vollbildmodus, über „PDF“ öffnen Sie den Foliensatz als PDF; die A4-Lesefassung drucken Sie mit Strg/Cmd+P.</p>
   </div>
 </footer>
 
@@ -3041,9 +3041,10 @@ document.documentElement.classList.add('js');
     document.documentElement.setAttribute('data-theme',next);
     LS.set('bwl-theme',next);
   });
+  /* PDF-Knopf: oeffnet den Foliensatz (16:9, eine Seite je Folie, wie im Praesentationsmodus),
+     erzeugt mit werkzeuge/folien-pdf/folien-pdf.sh. Die A4-Lesefassung bleibt ueber Drucken (Strg/Cmd+P). */
   document.getElementById('printBtn').addEventListener('click',function(){
-    if(document.body.classList.contains('deck')) deckExit();
-    window.print();
+    window.open('BWL1-Vorlesung-2-Folien.pdf','_blank');
   });
 
   /* ---------- Timer ---------- */
