@@ -14,6 +14,10 @@ die A4-Lesefassung entsteht über die Druckfunktion des Browsers.
 
 Übersicht: <https://professororbach.github.io/bwl1/>
 
+## Zugang
+
+Die Seiten sind seit dem 28.10.2026 passwortgeschützt und verschlüsselt (AES-256-GCM, Schlüssel per PBKDF2 aus dem Passwort). Das Passwort erhalten Studierende in der Vorlesung. Die Foliensätze als PDF sind davon nicht erfasst.
+
 ## Hinweis zu den Videobotschaften
 
 Die Folie „Stimmen von Ehemaligen“ zeigt in der Vorlesung zwei Videobotschaften.

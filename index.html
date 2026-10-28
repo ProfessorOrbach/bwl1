@@ -1,114 +1,73 @@
 <!doctype html>
+<!-- bwl1-verschluesselt -->
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Grundlagen der BWL 1 — Vorlesungsreihe</title>
-<meta name="description" content="Die Vorlesungsreihe Grundlagen der Betriebswirtschaftslehre 1 bei Prof. Dr. Dominik Orbach, Institut für Versicherungswesen der TH Köln, Wintersemester 2026/27.">
-<meta name="author" content="Prof. Dr. Dominik Orbach">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Grundlagen der BWL 1 · Zugang</title>
 <style>
-:root{
-  --rot:#c81e0f; --orange:#ea5a00; --violett:#b43092;
-  --ink:#15151a; --ink-2:#4e4e5a; --ink-3:#7d7d8c;
-  --paper:#fafafc; --paper-2:#f1f1f5; --card:#fff; --line:#e3e3ea; --line-2:#d2d2dc;
-  --display:'Bricolage Grotesque','Helvetica Neue',Helvetica,Arial,sans-serif;
-  --body:'Figtree','Helvetica Neue',Helvetica,Arial,sans-serif;
-  --mono:'IBM Plex Mono','SFMono-Regular',Consolas,monospace;
-  --verlauf:linear-gradient(100deg,var(--rot) 0%,var(--orange) 48%,var(--violett) 100%);
-  --r:12px;
-  color-scheme:light;
-}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --rot:#ff6f5e; --orange:#ff9245; --violett:#e089cf;
-    --ink:#f3f3f7; --ink-2:#b8b8c6; --ink-3:#8a8a99;
-    --paper:#101014; --paper-2:#17171d; --card:#1c1c23; --line:#2d2d37; --line-2:#3b3b47;
-    color-scheme:dark;
-  }
-}
-:root[data-theme="dark"]{
-  --rot:#ff6f5e; --orange:#ff9245; --violett:#e089cf;
-  --ink:#f3f3f7; --ink-2:#b8b8c6; --ink-3:#8a8a99;
-  --paper:#101014; --paper-2:#17171d; --card:#1c1c23; --line:#2d2d37; --line-2:#3b3b47;
-  color-scheme:dark;
-}
+:root{--rot:#C00009;--orange:#E24300;--violett:#9D167A;--ink:#151518;--ink2:#55555f;--line:#e3e3ea}
 *{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);
-  font-size:clamp(17px,1.05vw,19px);line-height:1.62;-webkit-font-smoothing:antialiased}
-h1,h2,h3{margin:0;font-family:var(--display);font-weight:800;line-height:1.1;letter-spacing:-.03em;text-wrap:balance;overflow-wrap:break-word;hyphens:auto}
-p{margin:0}
-a{color:inherit}
-.wrap{max-width:1040px;margin-inline:auto;padding:clamp(2.6rem,6vw,5rem) clamp(20px,5vw,48px) clamp(3rem,6vw,5rem)}
-.eyebrow{font-family:var(--mono);font-size:.8rem;letter-spacing:.15em;word-spacing:.16em;text-transform:uppercase;color:var(--rot);margin-bottom:.8rem}
-h1{font-size:clamp(2.2rem,5.4vw,3.8rem)}
-/* 'Betriebswirtschaftslehre' ist laenger als ein Telefondisplay breit */
-@media screen and (max-width:520px){h1{font-size:clamp(1.75rem,8.2vw,2.4rem);letter-spacing:-.035em}}
-h1 em{font-style:normal;background:var(--verlauf);-webkit-background-clip:text;background-clip:text;color:transparent}
-.sub{margin-top:1.1rem;font-size:clamp(1.05rem,1.4vw,1.28rem);color:var(--ink-2);max-width:62ch}
-.meta{margin-top:1.3rem;font-family:var(--mono);font-size:.84rem;letter-spacing:.04em;word-spacing:.14em;color:var(--ink-3);line-height:1.8}
-h2{font-size:clamp(1.3rem,2.4vw,1.75rem);margin-top:clamp(2.4rem,5vw,3.6rem);margin-bottom:1.1rem}
-.liste{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
-.zeile{background:var(--card);display:grid;grid-template-columns:3rem 7.4rem minmax(0,1fr) auto;gap:1.1rem;
-  align-items:baseline;padding:.85rem 1.15rem;text-decoration:none}
-.zeile .n{font-family:var(--mono);font-size:.86rem;color:var(--ink-3);font-variant-numeric:tabular-nums}
-.zeile .d{font-family:var(--mono);font-size:.86rem;color:var(--ink-2);font-variant-numeric:tabular-nums}
-.zeile .t{font-weight:600;line-height:1.35}
-.zeile .b{font-family:var(--mono);font-size:.68rem;letter-spacing:.09em;word-spacing:.14em;text-transform:uppercase;
-  padding:.24rem .65rem;border-radius:999px;background:var(--paper-2);color:var(--ink-3);border:1px solid var(--line-2);white-space:nowrap}
-a.zeile .b{background:var(--rot);border-color:var(--rot);color:#fff}
-a.zeile:hover{background:var(--paper-2)}
-a.zeile:hover .t{color:var(--rot)}
-.zeile.frei{background:var(--paper-2)}
-.zeile.frei .t{color:var(--ink-3);font-weight:400;font-style:italic}
-@media (max-width:640px){
-  .zeile{grid-template-columns:2.4rem minmax(0,1fr);row-gap:.25rem;gap:.8rem}
-  .zeile .t,.zeile .b{grid-column:2}
-  .zeile .b{justify-self:start}
-}
-footer{border-top:1px solid var(--line);background:var(--paper-2);padding:2.4rem clamp(20px,5vw,48px) 3.2rem}
-footer div{max-width:1040px;margin-inline:auto;font-family:var(--mono);font-size:.82rem;color:var(--ink-3);line-height:1.85;word-spacing:.14em}
-footer a{color:var(--ink-2)}
-:focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:6px}
+html,body{margin:0;height:100%;background:#f1f1f5;color:var(--ink);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif}
+body{display:grid;place-items:center;padding:20px}
+body::before{content:"";position:fixed;left:0;right:0;top:0;height:6px;background:linear-gradient(100deg,var(--rot),var(--orange) 48%,var(--violett))}
+main{width:100%;max-width:440px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:32px 30px 28px;box-shadow:0 10px 30px -18px rgba(20,20,30,.35)}
+.eyebrow{margin:0 0 10px;font:600 12px/1.4 ui-monospace,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--rot)}
+h1{margin:0 0 8px;font-size:26px;line-height:1.15;letter-spacing:-.02em}
+p{margin:0 0 20px;color:var(--ink2);line-height:1.5}
+form{display:flex;gap:10px}
+input{flex:1;min-width:0;font:inherit;font-size:17px;padding:12px 14px;border:1px solid #d2d2dc;border-radius:10px}
+input:focus{outline:2px solid var(--rot);outline-offset:1px;border-color:transparent}
+button{font:inherit;font-weight:700;font-size:16px;padding:12px 18px;border:0;border-radius:10px;background:var(--rot);color:#fff;cursor:pointer}
+button:disabled{opacity:.6;cursor:wait}
+#fehler{margin:14px 0 0;color:var(--rot);font-weight:600}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <p class="eyebrow">Wintersemester 2026/27 · TH Köln</p>
-  <h1>Grundlagen der <em>Betriebswirtschaftslehre 1</em></h1>
-  <p class="sub">Die Folien zur Vorlesung, als Webseite statt als Foliensatz. Jede Vorlesung lässt sich lesen, im Präsentationsmodus durchblättern und als PDF ausdrucken.</p>
-  <p class="meta">Prof. Dr. Dominik Orbach · Institut für Versicherungswesen · TH Köln<br>
-  Donnerstags 9:45 bis 11:15 Uhr, Hörsaal 284 · parallel als Zoom-Sitzung 13:30 bis 15:00 Uhr</p>
-
-  <h2>Die vierzehn Termine</h2>
-  <div class="liste">
-    <a class="zeile" href="vorlesung-1/"><span class="n">01</span><span class="d">08.10.2026</span><span class="t">Einleitung</span><span class="b">Öffnen</span></a>
-    <a class="zeile" href="vorlesung-2/"><span class="n">02</span><span class="d">15.10.2026</span><span class="t">Grundlagen: Unternehmen und Umwelt</span><span class="b">Öffnen</span></a>
-    <div class="zeile"><span class="n">03</span><span class="d">22.10.2026</span><span class="t">Ziele des Unternehmens</span><span class="b">folgt</span></div>
-    <div class="zeile"><span class="n">04</span><span class="d">29.10.2026</span><span class="t">Marketing: Grundlagen</span><span class="b">folgt</span></div>
-    <div class="zeile"><span class="n">05</span><span class="d">05.11.2026</span><span class="t">Marketing: Produktpolitik</span><span class="b">folgt</span></div>
-    <div class="zeile"><span class="n">06</span><span class="d">12.11.2026</span><span class="t">Marketing: Konditionenpolitik</span><span class="b">folgt</span></div>
-    <div class="zeile frei"><span class="n">—</span><span class="d">19.11.2026</span><span class="t">Projektwoche, keine Vorlesung</span><span class="b">KW 47</span></div>
-    <div class="zeile"><span class="n">07</span><span class="d">26.11.2026</span><span class="t">Gruppenarbeit Unternehmensanalyse</span><span class="b">Projekt</span></div>
-    <div class="zeile"><span class="n">08</span><span class="d">03.12.2026</span><span class="t">Gruppenarbeit Unternehmensanalyse</span><span class="b">Projekt</span></div>
-    <div class="zeile"><span class="n">09</span><span class="d">10.12.2026</span><span class="t">Finale der Unternehmensanalyse · Gastvortrag</span><span class="b">Alle vor Ort</span></div>
-    <div class="zeile"><span class="n">10</span><span class="d">17.12.2026</span><span class="t">Marketing: Distributionspolitik</span><span class="b">folgt</span></div>
-    <div class="zeile frei"><span class="n">—</span><span class="d">24.12. / 31.12.</span><span class="t">Weihnachtspause</span><span class="b">frei</span></div>
-    <div class="zeile"><span class="n">11</span><span class="d">07.01.2027</span><span class="t">Marketing: Kommunikationspolitik</span><span class="b">folgt</span></div>
-    <div class="zeile"><span class="n">12</span><span class="d">14.01.2027</span><span class="t">Personal</span><span class="b">folgt</span></div>
-    <div class="zeile"><span class="n">13</span><span class="d">21.01.2027</span><span class="t">Organisation</span><span class="b">folgt</span></div>
-    <div class="zeile"><span class="n">14</span><span class="d">28.01.2027</span><span class="t">Zusammenfassung</span><span class="b">Letzter Termin</span></div>
-  </div>
-</div>
-<footer>
-  <div>
-    Prof. Dr. Dominik Orbach · Institut für Versicherungswesen · TH Köln<br>
-    <a href="https://professororbach.github.io/">professororbach.github.io</a> ·
-    <a href="https://professororbach.github.io/impressum.html">Impressum</a> ·
-    <a href="https://professororbach.github.io/datenschutz.html">Datenschutz</a>
-  </div>
-</footer>
+<main>
+  <p class="eyebrow">TH Köln · ivwKöln</p>
+  <h1>Grundlagen der BWL 1</h1>
+  <p>Die Unterlagen sind geschützt. Das Passwort erhalten Sie in der Vorlesung.</p>
+  <form id="f" autocomplete="on">
+    <input type="password" id="pw" name="password" autocomplete="current-password" placeholder="Passwort" aria-label="Passwort" required autofocus>
+    <button id="b">Öffnen</button>
+  </form>
+  <p id="fehler" hidden>Das Passwort stimmt nicht.</p>
+</main>
+<script>
+(function(){
+  var D={"salt":"s3bd1/ZwtxCYt94TH52d1w==","iv":"35oQ4QhqKPT3iCpv","iter":310000,"ct":"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"};
+  var LS='bwl1-schluessel';
+  function bytes(s){var b=atob(s),u=new Uint8Array(b.length);for(var i=0;i<b.length;i++)u[i]=b.charCodeAt(i);return u}
+  function b64(u){var s='';u=new Uint8Array(u);for(var i=0;i<u.length;i++)s+=String.fromCharCode(u[i]);return btoa(s)}
+  function merke(v){try{localStorage.setItem(LS,v)}catch(e){try{sessionStorage.setItem(LS,v)}catch(e2){}}}
+  function gemerkt(){try{return localStorage.getItem(LS)||sessionStorage.getItem(LS)}catch(e){return null}}
+  function vergiss(){try{localStorage.removeItem(LS);sessionStorage.removeItem(LS)}catch(e){}}
+  function oeffne(roh){
+    return crypto.subtle.importKey('raw',roh,'AES-GCM',false,['decrypt']).then(function(k){
+      return crypto.subtle.decrypt({name:'AES-GCM',iv:bytes(D.iv)},k,bytes(D.ct));
+    }).then(function(klar){
+      var html=new TextDecoder().decode(klar);
+      document.open();document.write(html);document.close();
+    });
+  }
+  /* document.open() ersetzt das Dokument nur zuverlässig, wenn es fertig geladen ist */
+  function nachLaden(fn){ if(document.readyState==='complete') setTimeout(fn,0); else window.addEventListener('load',function(){ setTimeout(fn,0); }); }
+  var r=gemerkt();
+  if(r){ nachLaden(function(){ oeffne(bytes(r)).catch(function(){ vergiss(); }); }); }
+  document.getElementById('f').addEventListener('submit',function(e){
+    e.preventDefault();
+    var btn=document.getElementById('b'),fe=document.getElementById('fehler');
+    btn.disabled=true; fe.hidden=true;
+    var pw=new TextEncoder().encode(document.getElementById('pw').value);
+    crypto.subtle.importKey('raw',pw,'PBKDF2',false,['deriveBits']).then(function(basis){
+      return crypto.subtle.deriveBits({name:'PBKDF2',salt:bytes(D.salt),iterations:D.iter,hash:'SHA-256'},basis,256);
+    }).then(function(bits){
+      return oeffne(bits).then(function(){ merke(b64(bits)); });
+    }).catch(function(){ fe.hidden=false; btn.disabled=false; });
+  });
+})();
+</script>
 </body>
 </html>
