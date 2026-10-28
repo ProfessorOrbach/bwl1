@@ -11,6 +11,8 @@ die A4-Lesefassung entsteht über die Druckfunktion des Browsers.
 |---|---|---|---|
 | 01 | 08.10.2026 | Einleitung | [vorlesung-1](https://professororbach.github.io/bwl1/vorlesung-1/) |
 | 02 | 15.10.2026 | Unternehmen und Umwelt | [vorlesung-2](https://professororbach.github.io/bwl1/vorlesung-2/) |
+| 03 | 22.10.2026 | Ziele des Unternehmens | [vorlesung-3](https://professororbach.github.io/bwl1/vorlesung-3/) |
+| 04 | 29.10.2026 | Marketing: Grundlagen | [vorlesung-4](https://professororbach.github.io/bwl1/vorlesung-4/) |
 
 Übersicht: <https://professororbach.github.io/bwl1/>
 
